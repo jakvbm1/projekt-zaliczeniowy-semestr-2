@@ -1,0 +1,35 @@
+#include "button.h"
+
+Button::Button(float width, float height, float x, float y, string message, Color c_stand, Color c_mouse_on, Color c_clicked)
+{
+	color = c_stand;
+	color_when_mouse_on = c_mouse_on;
+	color_when_clicked = c_clicked;
+
+	shape.setPosition(x, y);
+	shape.setSize(Vector2<float> {width, height});
+	shape.setOrigin((width / 2),-(height / 2));
+	shape.setOutlineColor(Color::Black);
+	shape.setOutlineThickness(3);
+	shape.setFillColor(color);
+
+	font.loadFromFile("assets\\fonts\\dpcomic.ttf");
+	text.setFont(font);
+	text.setString(message);
+	text.setFillColor(Color::White);
+	text.setOutlineColor(Color::Black);
+	text.setOutlineThickness(2);
+	text.setCharacterSize(72);
+
+	const  FloatRect bounds(text.getLocalBounds());
+	const Vector2f box(shape.getSize());
+	text.setOrigin((bounds.width - box.x) / 2 + bounds.left, (bounds.height - box.y) / 2 + bounds.top);
+	text.setPosition(x- (width/2), y + (height/2));
+
+}
+
+void Button::draw(RenderTarget& target, RenderStates states) const
+{
+	target.draw(shape, states);
+	target.draw(text);
+}
