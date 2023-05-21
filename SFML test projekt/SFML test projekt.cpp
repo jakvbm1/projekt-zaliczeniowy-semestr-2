@@ -3,6 +3,7 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 #include"button.h"
+#include<math.h>
 
 using namespace sf;
 using namespace std;
@@ -58,7 +59,7 @@ int main()
         window.draw(exit_button);
         
         window.pollEvent(event);
-
+        Vector2i position = Mouse::getPosition(window);
         switch (event.type)
         {
         case Event::Closed:
@@ -67,7 +68,17 @@ int main()
             break;
         }
 
-        
+        case Event:: MouseButtonPressed:
+        {
+            cout << position.x << " " << position.y << endl;
+            if (abs(position.x - 512) < 200 && abs(position.y - 584) < 50)
+            {
+                window.close();
+                break;
+            }
+
+        }
+
         }
 
 
