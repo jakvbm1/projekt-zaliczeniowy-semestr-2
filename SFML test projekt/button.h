@@ -17,13 +17,18 @@ class Button : public Drawable
 	Color color_when_mouse_on;
 	Color color_when_clicked;
 
-public:
-	Button(float width, float height, float x, float y, string message, Color c_stand = Color::White, Color c_mouse_on = Color::Yellow, Color c_clicked = Color::Red);
+	SoundBuffer buff;
+	Sound click_sound;
 
+public:
+	Button();
+	Button(float width, float height, float x, float y, string message, Color c_stand = Color::White, Color c_mouse_on = Color::Yellow, Color c_clicked = Color::Red);
+	void pressed();
 
 
 	// Odziedziczono za poœrednictwem elementu Drawable
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
+
 
 };
 

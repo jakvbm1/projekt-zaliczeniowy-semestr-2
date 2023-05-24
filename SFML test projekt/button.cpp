@@ -1,10 +1,17 @@
 #include "button.h"
 
+Button::Button()
+{
+}
+
 Button::Button(float width, float height, float x, float y, string message, Color c_stand, Color c_mouse_on, Color c_clicked)
 {
 	color = c_stand;
 	color_when_mouse_on = c_mouse_on;
 	color_when_clicked = c_clicked;
+
+	buff.loadFromFile("assets\\audio\\universfield.wav");
+	click_sound.setBuffer(buff);
 
 	shape.setPosition(x, y);
 	shape.setSize(Vector2<float> {width, height});
@@ -28,8 +35,22 @@ Button::Button(float width, float height, float x, float y, string message, Colo
 
 }
 
+void Button::pressed()
+{
+	shape.setFillColor(color_when_clicked);
+	
+	click_sound.setPlayingOffset(seconds(0.35));
+	click_sound.play();
+	sleep(seconds(0.3));
+	
+	
+
+}
+
 void Button::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(shape, states);
 	target.draw(text);
 }
+
+
