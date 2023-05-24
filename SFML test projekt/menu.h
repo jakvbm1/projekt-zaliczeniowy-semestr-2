@@ -4,12 +4,13 @@
 #include<SFML/Window.hpp>
 #include"button.h"
 #include<math.h>
+#include "scene.h"
 
 
 using namespace std;
 using namespace sf;
 
-class Menu
+class Menu : public Scene
 {
 private:
 	//window
