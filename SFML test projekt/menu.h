@@ -5,7 +5,8 @@
 #include"button.h"
 #include<math.h>
 #include "scene.h"
-
+#include"SceneManager.h"
+#include"credits.h"
 
 using namespace std;
 using namespace sf;
@@ -13,9 +14,6 @@ using namespace sf;
 class Menu : public Scene
 {
 private:
-	//window
-	RenderWindow* window;
-	VideoMode vm;
 
 	//variables used in menu
 	Texture background_t;
@@ -27,23 +25,17 @@ private:
 	Button* credits_button;
 	Text title;
 	Text authors;
-	Mouse mouse;
-
-	Event event;
 
 	void initialize_vars();
-	void initialize_window();
 	void initialize_background();
 
 
 public:
 
-	const bool is_open() const;
 
-
-	Menu();
+	Menu(SceneManager* manager, RenderWindow* window);
 	~Menu();
-	void pollEvents();
+	void handling_events(const sf::Event& event);
 	void update();
 	void render();
 

@@ -10,7 +10,7 @@ void Menu::initialize_vars()
 	this->main_font.loadFromFile("assets\\fonts\\dpcomic.ttf");
 	this->title.setFont(main_font);
 	this->title.setCharacterSize(96);
-	this->title.setString("MENU");
+	this->title.setString("RYBKI");
 	this->title.setOutlineColor(Color::Black);
 	this->title.setOutlineThickness(3);
 	const  FloatRect bounds_title(title.getLocalBounds());
@@ -20,7 +20,7 @@ void Menu::initialize_vars()
 
 	this->authors.setFont(main_font);
 	this->authors.setCharacterSize(48);
-	this->authors.setString("szniob de la dziob productions");
+	this->authors.setString("Damian Knopek, Jakub Miarka");
 	this->authors.setOutlineColor(Color::Black);
 	this->authors.setOutlineThickness(2);
 	const  FloatRect bounds_company(this->authors.getLocalBounds());
@@ -29,14 +29,6 @@ void Menu::initialize_vars()
 
 }
 
-void Menu::initialize_window()
-{
-	this->vm.height = 768;
-	this->vm.width = 1024;
-	
-
-	this->window = new RenderWindow{ vm, "game's menu" };
-}
 
 void Menu::initialize_background()
 {
@@ -45,43 +37,31 @@ void Menu::initialize_background()
 	this->background.setTexture(background_t, true);
 }
 
-const bool Menu::is_open() const
-{
-	return this->window->isOpen();
-}
 
-Menu::Menu()
+Menu::Menu(SceneManager* manager, RenderWindow* window):Scene(manager, window)
 {
-	initialize_window();
 	initialize_vars();
 	initialize_background();
 }
 
 Menu::~Menu()
 {
-	delete this->window;
 	delete this->start_button;
 	delete this->exit_button;
 	delete this->rules_button;
 	delete this->credits_button;
 }
 
-void Menu::pollEvents()
+void Menu::handling_events(const sf::Event& event)
 {
-	while (this->window->pollEvent(this->event))
-	{
+
 		Vector2i mouse_position = Mouse::getPosition(*this->window);
         switch (event.type)
         {
-        case Event::Closed:
-        {
-            this->window->close();
-            break;
-        }
 
         case Event::MouseButtonPressed:
         {
-            cout << mouse_position.x << " " << mouse_position.y << endl;
+            
             if (abs(mouse_position.x - 512) < 200 && abs(mouse_position.y - 584) < 50)
             {
                 exit_button->pressed();
@@ -99,29 +79,26 @@ void Menu::pollEvents()
             {
                 rules_button->pressed();
 
-
-
             }
 
             else if (abs(mouse_position.x - 622) < 95 && abs(mouse_position.y - 434) < 50)
             {
                 credits_button->pressed();
+				manager->set_scene(std::make_unique<Credits>(manager, window));
             }
             break;
         }
 
         }
 	}
-}
 
 void Menu::update()
 {
-	this->pollEvents();
 }
 
 void Menu::render()
 {
-	this->window->clear(Color::Red);
+	//this->window->clear();
 	this->window->draw(background);
 	this->window->draw(title);
 	this->window->draw(authors);
@@ -129,5 +106,4 @@ void Menu::render()
 	this->window->draw(*rules_button);
 	this->window->draw(*credits_button);
 	this->window->draw(*exit_button);
-	this->window->display();
 }

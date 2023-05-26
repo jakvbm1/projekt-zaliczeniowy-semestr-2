@@ -133,12 +133,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="credits.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="header.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SFML test projekt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button.h" />
+    <ClInclude Include="credits.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="scene.h" />

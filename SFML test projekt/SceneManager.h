@@ -7,8 +7,15 @@ class Scene;
 
 class SceneManager
 {
-	unique_ptr<Scene> currentScene;
+private:
+	std::unique_ptr<Scene> current_scene;
 
 public:
+	SceneManager();
+	void handling_events(const sf::Event& event);
+	void render();
+	void update();
+	void set_scene(std::unique_ptr<Scene> newScene);
+	~SceneManager();
 
 };

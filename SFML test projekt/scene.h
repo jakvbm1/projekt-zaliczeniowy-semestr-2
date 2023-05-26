@@ -15,9 +15,10 @@ RenderWindow* window;
 SceneManager* manager;
 
 public:
-	Scene();
-	virtual void pollEvents(const sf::Event& event) = 0;
+	Scene(SceneManager* manager, RenderWindow* window);
+
+	virtual void handling_events(const sf::Event& event) = 0;
 	virtual void render() = 0;
 	virtual void update() = 0;
-	virtual ~Scene() = 0;
+	//virtual ~Scene() = 0;
 };

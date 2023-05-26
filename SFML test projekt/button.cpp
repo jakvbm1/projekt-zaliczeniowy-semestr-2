@@ -47,6 +47,39 @@ void Button::pressed()
 
 }
 
+void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
+{
+	shape.setPosition(pos_x, pos_y);
+	shape.setSize(Vector2<float> {(float)x, (float)y});
+	shape.setOrigin((x / 2), -(y / 2));
+	text.setString(mes);
+	shape.setOutlineColor(Color::Black);
+	shape.setOutlineThickness(3);
+	shape.setFillColor(color);
+
+	color = Color::White;
+	color_when_mouse_on = Color::Yellow;
+	color_when_clicked = Color::Red;
+
+	buff.loadFromFile("assets\\audio\\universfield.wav");
+	click_sound.setBuffer(buff);
+	font.loadFromFile("assets\\fonts\\dpcomic.ttf");
+	text.setFont(font);
+	text.setFillColor(Color::White);
+	text.setOutlineColor(Color::Black);
+	text.setOutlineThickness(2);
+	text.setCharacterSize(72);
+	shape.setOutlineColor(Color::Black);
+	shape.setOutlineThickness(3);
+	shape.setFillColor(color);
+
+	const  FloatRect bounds(text.getLocalBounds());
+	const Vector2f box(shape.getSize());
+	text.setOrigin((bounds.width - box.x) / 2 + bounds.left, (bounds.height - box.y) / 2 + bounds.top);
+	text.setPosition(pos_x - (x / 2), pos_y + (y / 2));
+
+}
+
 void Button::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(shape, states);
