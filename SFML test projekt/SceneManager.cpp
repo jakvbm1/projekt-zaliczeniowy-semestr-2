@@ -14,9 +14,9 @@ void SceneManager::render()
 	current_scene->render();
 }
 
-void SceneManager::update()
+void SceneManager::update(const sf::Time& deltaTime)
 {
-	current_scene->update();
+	current_scene->update(deltaTime);
 }
 
 void SceneManager::set_scene(unique_ptr<Scene> newScene)

@@ -21,7 +21,7 @@ void Game::play()
 
 		}
 		window.clear();
-		manager.update();
+		manager.update(frameClock.getElapsedTime());
 		manager.render();
 		window.display();
 	}

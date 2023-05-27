@@ -7,6 +7,7 @@
 #include "scene.h"
 #include"SceneManager.h"
 #include"credits.h"
+#include"Rules.h"
 
 using namespace std;
 using namespace sf;
@@ -19,10 +20,10 @@ private:
 	Texture background_t;
 	Sprite background;
 	Font main_font;
-	Button* start_button;
-	Button* exit_button;
-	Button* rules_button;
-	Button* credits_button;
+	Button start_button;
+	Button exit_button;
+	Button rules_button;
+	Button credits_button;
 	Text title;
 	Text authors;
 
@@ -35,9 +36,9 @@ public:
 
 	Menu(SceneManager* manager, RenderWindow* window);
 	~Menu();
-	void handling_events(const sf::Event& event);
-	void update();
-	void render();
+	virtual void handling_events(const sf::Event& event) override;
+	virtual void update(const sf::Time& deltaTime) override;
+	virtual void render() override;
 
 
 };

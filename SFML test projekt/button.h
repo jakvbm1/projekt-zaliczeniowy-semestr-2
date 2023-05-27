@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <string>
 #include <iostream>
+#include <math.h>
 
 using namespace sf;
 using namespace std;
@@ -25,6 +26,8 @@ public:
 	Button(float width, float height, float x, float y, string message, Color c_stand = Color::White, Color c_mouse_on = Color::Yellow, Color c_clicked = Color::Red);
 	void pressed();
 	void set_parameters(int x, int y, string text, int pos_x, int pos_y);
+	bool is_mouse_on(Vector2i mouse_position);
+	void mouse_on_highlight(Vector2i mouse_position);
 
 
 	// Odziedziczono za poœrednictwem elementu Drawable

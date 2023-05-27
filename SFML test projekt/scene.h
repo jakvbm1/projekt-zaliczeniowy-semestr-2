@@ -19,6 +19,6 @@ public:
 
 	virtual void handling_events(const sf::Event& event) = 0;
 	virtual void render() = 0;
-	virtual void update() = 0;
+	virtual void update(const sf::Time& deltaTime) = 0;
 	//virtual ~Scene() = 0;
 };

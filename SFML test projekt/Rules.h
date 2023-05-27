@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
@@ -9,25 +8,20 @@
 #include"SceneManager.h"
 #include"menu.h"
 
-using namespace std;
-using namespace sf;
-
-class Credits: public Scene
+class Rules : public Scene
 {
 private:
-
-	Text credits_text_1;
-	Button back_button;
 	Font font;
+	Button back_button;
+	Text rules_text_1;
 	Texture background_t;
 	Sprite background;
 
 public:
-	Credits(SceneManager* manager, RenderWindow* window);
-
+	Rules(SceneManager* manager, RenderWindow* window);
 	// Odziedziczono za poœrednictwem elementu Scene
 	virtual void handling_events(const sf::Event& event) override;
 	virtual void render() override;
 	virtual void update(const sf::Time& deltaTime) override;
-
 };
+

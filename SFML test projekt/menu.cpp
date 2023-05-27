@@ -2,10 +2,11 @@
 
 void Menu::initialize_vars()
 {
-	this->start_button =new Button { 400, 100, 512, 184, "start game" };
-	this->exit_button = new Button{ 400, 100, 512, 484 , "exit game" };
-	this->rules_button = new Button{ 190, 100, 412, 334, "rules" };
-	this->credits_button = new Button{ 190, 100, 622, 334, "credits" };
+	this->start_button.set_parameters(400, 100, "start game", 512, 184);
+	this->exit_button.set_parameters(400, 100, "exit game", 512, 484);
+	this->rules_button.set_parameters(190, 100, "rules", 412, 334);
+	this->credits_button.set_parameters(190, 100, "credits", 622, 334);
+
 
 	this->main_font.loadFromFile("assets\\fonts\\dpcomic.ttf");
 	this->title.setFont(main_font);
@@ -46,10 +47,6 @@ Menu::Menu(SceneManager* manager, RenderWindow* window):Scene(manager, window)
 
 Menu::~Menu()
 {
-	delete this->start_button;
-	delete this->exit_button;
-	delete this->rules_button;
-	delete this->credits_button;
 }
 
 void Menu::handling_events(const sf::Event& event)
@@ -59,31 +56,41 @@ void Menu::handling_events(const sf::Event& event)
         switch (event.type)
         {
 
+		case Event::MouseMoved:
+		{
+			exit_button.mouse_on_highlight(mouse_position);
+			start_button.mouse_on_highlight(mouse_position);
+			credits_button.mouse_on_highlight(mouse_position);
+			rules_button.mouse_on_highlight(mouse_position);
+			break;
+		}
+
         case Event::MouseButtonPressed:
         {
             
-            if (abs(mouse_position.x - 512) < 200 && abs(mouse_position.y - 584) < 50)
+            if (exit_button.is_mouse_on(mouse_position))
             {
-                exit_button->pressed();
+                exit_button.pressed();
 				this->window->close();
             
             }
 
-            else if (abs(mouse_position.x - 512) < 200 && abs(mouse_position.y - 284) < 50)
+            else if (start_button.is_mouse_on(mouse_position))
             {
-                start_button->pressed();
+                start_button.pressed();
 
             }
 
-            else if (abs(mouse_position.x - 412) < 95 && abs(mouse_position.y - 434) < 50)
+            else if (rules_button.is_mouse_on(mouse_position))
             {
-                rules_button->pressed();
+                rules_button.pressed();
+				manager->set_scene(std::make_unique<Rules>(manager, window));
 
             }
 
-            else if (abs(mouse_position.x - 622) < 95 && abs(mouse_position.y - 434) < 50)
+            else if (credits_button.is_mouse_on(mouse_position))
             {
-                credits_button->pressed();
+                credits_button.pressed();
 				manager->set_scene(std::make_unique<Credits>(manager, window));
             }
             break;
@@ -92,7 +99,7 @@ void Menu::handling_events(const sf::Event& event)
         }
 	}
 
-void Menu::update()
+void Menu::update(const sf::Time& deltaTime)
 {
 }
 
@@ -102,8 +109,8 @@ void Menu::render()
 	this->window->draw(background);
 	this->window->draw(title);
 	this->window->draw(authors);
-	this->window->draw(*start_button);
-	this->window->draw(*rules_button);
-	this->window->draw(*credits_button);
-	this->window->draw(*exit_button);
+	this->window->draw(start_button);
+	this->window->draw(rules_button);
+	this->window->draw(credits_button);
+	this->window->draw(exit_button);
 }

@@ -39,9 +39,9 @@ void Button::pressed()
 {
 	shape.setFillColor(color_when_clicked);
 	
-	click_sound.setPlayingOffset(seconds(0.35));
+	click_sound.setPlayingOffset(seconds(0.2));
 	click_sound.play();
-	sleep(seconds(0.3));
+	//sleep(seconds(0.3));
 	
 	
 
@@ -78,6 +78,32 @@ void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
 	text.setOrigin((bounds.width - box.x) / 2 + bounds.left, (bounds.height - box.y) / 2 + bounds.top);
 	text.setPosition(pos_x - (x / 2), pos_y + (y / 2));
 
+}
+
+bool Button::is_mouse_on(Vector2i mouse_position)
+{
+	if (abs(mouse_position.x - shape.getPosition().x) < (shape.getSize().x / 2) && abs(mouse_position.y - shape.getPosition().y - shape.getSize().y) < (shape.getSize().y / 2))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+void Button::mouse_on_highlight(Vector2i mouse_position)
+{
+	if (is_mouse_on(mouse_position))
+	{
+		shape.setFillColor(color_when_mouse_on);
+	}
+
+	else
+	{
+		shape.setFillColor(color);
+	}
 }
 
 void Button::draw(RenderTarget& target, RenderStates states) const
