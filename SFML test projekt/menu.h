@@ -8,6 +8,7 @@
 #include"SceneManager.h"
 #include"credits.h"
 #include"Rules.h"
+#include"game_scene.h"
 
 using namespace std;
 using namespace sf;

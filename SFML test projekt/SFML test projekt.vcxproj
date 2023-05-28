@@ -136,6 +136,7 @@
     <ClCompile Include="credits.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="game_scene.cpp" />
     <ClCompile Include="header.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="Rules.cpp" />

@@ -78,7 +78,7 @@ void Menu::handling_events(const sf::Event& event)
             else if (start_button.is_mouse_on(mouse_position))
             {
                 start_button.pressed();
-
+				manager->set_scene(std::make_unique<Game_scene>(manager, window));
             }
 
             else if (rules_button.is_mouse_on(mouse_position))
