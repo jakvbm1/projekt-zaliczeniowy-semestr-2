@@ -2,12 +2,6 @@
 #include <iostream>
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
-#include"button.h"
-#include<math.h>
-#include "scene.h"
-#include"SceneManager.h"
-#include"credits.h"
-#include"Rules.h"
 #include<SFML/Audio.hpp>
 
 using namespace std;
@@ -16,16 +10,14 @@ using namespace sf;
 class Player : public Drawable
 {
 private:
-	const int x;
-	int y;
-	Texture texture_n1;
-	Texture texture_n2;
-	Sprite fish_body;
-	RectangleShape hit_box;
+	Texture texture;
+	Sprite fish;
+	Vector2f position;
 
 public:
-	void move();
+	Player();
+	void set_default_parameters();
 	// Odziedziczono za poœrednictwem elementu Drawable
-	virtual void draw(RenderTarget& target, RenderStates states) = 0;
+	virtual void draw(RenderTarget& target, RenderStates states) const override;
 };
 

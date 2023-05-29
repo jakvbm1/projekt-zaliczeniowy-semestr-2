@@ -8,6 +8,7 @@
 #include"SceneManager.h"
 #include"menu.h"
 #include"Enemy.h"
+#include"Player.h"
 
 
 class Game_scene: public Scene
@@ -20,6 +21,7 @@ private:
 	Texture background_t;
 	Sprite background;
 	Enemy enemy;
+	Player player;
 	int elapsed_time;
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
