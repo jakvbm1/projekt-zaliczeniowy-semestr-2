@@ -7,6 +7,8 @@
 #include "scene.h"
 #include"SceneManager.h"
 #include"menu.h"
+#include"Enemy.h"
+
 
 class Game_scene: public Scene
 {
@@ -17,7 +19,8 @@ private:
 	Font font;
 	Texture background_t;
 	Sprite background;
-
+	Enemy enemy;
+	int elapsed_time;
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
 

@@ -5,6 +5,7 @@
 #include"scene.h"
 #include"SceneManager.h"
 #include"menu.h"
+#include"Enemy.h"
 
 using namespace sf;
 using namespace std;
