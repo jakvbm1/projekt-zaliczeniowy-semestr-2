@@ -16,12 +16,12 @@ void Game_scene::handling_events(const sf::Event& event)
 		{
 		case(Keyboard::Up):
 		{
-			this->player.changePosition(-5);
+			this->player.changePosition(-10);
 			break;
 		}
 		case(Keyboard::Down):
 		{
-			this->player.changePosition(5);
+			this->player.changePosition(10);
 			break;
 		}
 		default:
