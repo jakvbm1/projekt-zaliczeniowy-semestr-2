@@ -9,7 +9,27 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 
 void Game_scene::handling_events(const sf::Event& event)
 {
-
+	switch (event.type)
+	{
+	case(Event::KeyPressed):
+		switch (event.key.code)
+		{
+		case(Keyboard::Up):
+		{
+			this->player.changePosition(-5);
+			break;
+		}
+		case(Keyboard::Down):
+		{
+			this->player.changePosition(5);
+			break;
+		}
+		default:
+			break;
+		}
+	default:
+		break;
+	}
 }
 
 void Game_scene::render()
