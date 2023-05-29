@@ -22,8 +22,8 @@ protected:
 	RectangleShape hit_box;
 
 public:
+	Fish(float width, float height, float x, float y);
 	void move();
-
 	// Odziedziczono za poœrednictwem elementu Drawable
 	virtual void draw(RenderTarget& target, RenderStates states) = 0;
 };
