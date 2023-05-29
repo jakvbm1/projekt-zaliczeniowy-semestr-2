@@ -134,7 +134,7 @@
   <ItemGroup>
     <ClCompile Include="button.cpp" />
     <ClCompile Include="credits.cpp" />
-    <ClCompile Include="Fish.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="game_scene.cpp" />
     <ClCompile Include="header.cpp" />
@@ -147,8 +147,7 @@
   <ItemGroup>
     <ClInclude Include="button.h" />
     <ClInclude Include="credits.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Fish.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="game_scene.h" />
     <ClInclude Include="header.h" />
