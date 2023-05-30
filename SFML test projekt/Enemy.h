@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
+#include<random>
 
 using namespace sf;
 
@@ -20,7 +21,8 @@ private:
 public:
 	// Odziedziczono za poœrednictwem elementu Drawable
 	Enemy();
-	void moving(int acceletarion);
+	void relocating();
+	void moving(float acceletarion);
 	void change_texture();
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
 

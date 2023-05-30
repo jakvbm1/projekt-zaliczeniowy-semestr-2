@@ -46,6 +46,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
+	cout << elapsed_time << '\n';
 	{
 		if (elapsed_time_movement > 20)
 		{

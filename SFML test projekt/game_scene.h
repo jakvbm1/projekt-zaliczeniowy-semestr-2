@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "Enemy.h"
 #include "Player.h"
+#include <iostream>
 
 
 class Game_scene: public Scene
@@ -21,7 +22,7 @@ private:
 	Player player;
 	int elapsed_time_movement;
 	int elapsed_time_animation;
-	int elapsed_time;
+	float elapsed_time;
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
 
