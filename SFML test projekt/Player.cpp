@@ -4,17 +4,42 @@ Player::Player()
 {
 	this->texture.loadFromFile("assets\\graphics\\rybka.png");
 	this->fish.setTexture(texture, true);
-	this->position = { 0, 200 };
+	this->position = { 50, 200 };
 	this->fish.setPosition(position);
+	this->fish.setScale({ 0.3, 0.3 });
+
 	this->up = false;
 	this->down = false;
-	this->fish.setScale({ 1.5, 0.3 });
 }
 
-void Player::changePosition(float y)
+void Player::player_movement(Keyboard::Key key, bool checkPressed)
 {
-	this->position += { 0, y };
-	this->fish.setPosition(position);
+	if (checkPressed == true)
+	{
+		if (key == Keyboard::Up)
+		{
+			this->up = true;
+		}
+		if (key == Keyboard::Down)
+		{
+			this->down = true;
+		}
+	}
+	if (checkPressed == false)
+	{
+		this->up = false;
+		this->down = false;
+	}
+}
+
+void Player::update()
+{
+	Vector2f movement;
+	if(up)
+		movement.y -= 5.0f;
+	if(down)
+		movement.y += 5.0f;
+	fish.move(movement);
 }
 
 void Player::draw(RenderTarget& target, RenderStates states) const

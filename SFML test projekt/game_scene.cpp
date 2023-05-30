@@ -11,27 +11,12 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 
 void Game_scene::handling_events(const sf::Event& event)
 {
-	switch (event.type)
-	{
-	case(Event::KeyPressed):
-		switch (event.key.code)
-		{
-		case(Keyboard::Up):
-		{
-			this->player.changePosition(-10);
-			break;
-		}
-		case(Keyboard::Down):
-		{
-			this->player.changePosition(10);
-			break;
-		}
-		default:
-			break;
-		}
-	default:
-		break;
-	}
+	if (event.type == Event::KeyPressed)
+		player.player_movement(event.key.code, true);
+	
+	if (event.type == Event::KeyReleased)
+		player.player_movement(event.key.code, false);
+	
 }
 
 void Game_scene::render()
@@ -43,6 +28,7 @@ void Game_scene::render()
 
 void Game_scene::update(const sf::Time& deltaTime)
 {
+	player.update();
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
