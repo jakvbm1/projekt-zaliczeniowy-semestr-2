@@ -1,14 +1,11 @@
 #pragma once
-#include <iostream>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-#include"button.h"
-#include<math.h>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include "scene.h"
-#include"SceneManager.h"
-#include"menu.h"
-#include"Enemy.h"
-#include"Player.h"
+#include "SceneManager.h"
+#include "menu.h"
+#include "Enemy.h"
+#include "Player.h"
 
 
 class Game_scene: public Scene

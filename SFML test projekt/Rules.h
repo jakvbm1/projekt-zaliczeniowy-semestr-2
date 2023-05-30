@@ -1,12 +1,10 @@
 #pragma once
-#include <iostream>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-#include"button.h"
-#include<math.h>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include "button.h"
 #include "scene.h"
-#include"SceneManager.h"
-#include"menu.h"
+#include "SceneManager.h"
+#include "menu.h"
 
 class Rules : public Scene
 {
