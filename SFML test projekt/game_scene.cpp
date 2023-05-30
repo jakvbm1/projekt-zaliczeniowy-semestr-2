@@ -7,6 +7,10 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->elapsed_time_movement = 0;
 	this->elapsed_time_animation = 0;
 	this->elapsed_time = 0;
+	this->music.openFromFile("assets\\audio\\game_music.wav");
+	this->music.setLoop(true);
+	this->music.setVolume(50);
+	this->music.play();
 }
 
 void Game_scene::handling_events(const sf::Event& event)

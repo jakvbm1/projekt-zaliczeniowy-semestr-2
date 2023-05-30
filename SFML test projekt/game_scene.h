@@ -20,6 +20,8 @@ private:
 	Sprite background;
 	Enemy enemy[3];
 	Player player;
+	Music music;
+
 	int elapsed_time_movement;
 	int elapsed_time_animation;
 	float elapsed_time;
