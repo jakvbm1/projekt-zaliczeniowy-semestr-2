@@ -1,7 +1,7 @@
 #pragma once
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-#include"scene.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include "scene.h"
 
 class Scene;
 
@@ -17,5 +17,4 @@ public:
 	void update(const sf::Time& deltaTime);
 	void set_scene(std::unique_ptr<Scene> newScene);
 	~SceneManager();
-
 };

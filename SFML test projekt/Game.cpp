@@ -18,7 +18,6 @@ void Game::play()
 			window.close();
 
 			manager.handling_events(event);
-
 		}
 		window.clear();
 		manager.update(frameClock.restart());

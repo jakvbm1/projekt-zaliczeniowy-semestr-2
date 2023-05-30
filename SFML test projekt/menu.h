@@ -1,14 +1,12 @@
 #pragma once
-#include <iostream>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-#include"button.h"
-#include<math.h>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include "button.h"
 #include "scene.h"
-#include"SceneManager.h"
-#include"credits.h"
-#include"Rules.h"
-#include"game_scene.h"
+#include "SceneManager.h"
+#include "credits.h"
+#include "Rules.h"
+#include "game_scene.h"
 
 using namespace std;
 using namespace sf;
@@ -31,15 +29,11 @@ private:
 	void initialize_vars();
 	void initialize_background();
 
-
 public:
-
 
 	Menu(SceneManager* manager, RenderWindow* window);
 	~Menu();
 	virtual void handling_events(const sf::Event& event) override;
 	virtual void update(const sf::Time& deltaTime) override;
 	virtual void render() override;
-
-
 };
