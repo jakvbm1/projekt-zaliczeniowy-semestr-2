@@ -22,6 +22,8 @@ private:
 	Sprite background;
 	Enemy enemy;
 	Player player;
+	int elapsed_time_movement;
+	int elapsed_time_animation;
 	int elapsed_time;
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);

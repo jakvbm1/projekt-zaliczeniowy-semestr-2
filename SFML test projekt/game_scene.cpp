@@ -4,7 +4,7 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 {
 	this->background_t.loadFromFile("assets\\graphics\\placeholder_background.png");
 	this->background.setTexture(background_t, true);
-	this->elapsed_time = 0;
+	this->elapsed_time_movement = 0;
 }
 
 void Game_scene::handling_events(const sf::Event& event)
@@ -41,12 +41,20 @@ void Game_scene::render()
 
 void Game_scene::update(const sf::Time& deltaTime)
 {
-	this->elapsed_time += deltaTime.asMilliseconds();
+	this->elapsed_time_movement += deltaTime.asMilliseconds();
+	this->elapsed_time_animation += deltaTime.asMilliseconds();
+	this->elapsed_time += deltaTime.asSeconds();
 	{
-		if (elapsed_time > 20)
+		if (elapsed_time_movement > 20)
 		{
-			this->enemy.moving();
-			elapsed_time = 0;
+			this->enemy.moving(elapsed_time);
+			elapsed_time_movement = 0;
+		}
+
+		if (elapsed_time_animation > 500)
+		{
+			this->enemy.change_texture();
+			elapsed_time_animation = 0;
 		}
 	}
 

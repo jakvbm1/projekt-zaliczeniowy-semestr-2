@@ -7,13 +7,30 @@ Enemy::Enemy()
 	this->enemy_sprite.setTexture(texture_1, true);
 	this->position = { 800, 200 };
 	this->enemy_sprite.setPosition(position);
+	this->animation_change = true;
 }
 
-void Enemy::moving()
+void Enemy::moving(int acceletarion)
 {
 
 		this->position -= {3, 0};
 		this->enemy_sprite.setPosition(position);
+
+}
+
+void Enemy::change_texture()
+{
+	if (this->animation_change)
+	{
+		enemy_sprite.setTexture(texture_2);
+		this->animation_change = false;
+	}
+
+	else
+	{
+		enemy_sprite.setTexture(texture_1);
+		this->animation_change = true;
+	}
 
 }
 

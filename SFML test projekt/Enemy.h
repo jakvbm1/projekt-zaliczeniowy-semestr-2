@@ -14,13 +14,14 @@ private:
 	//SoundBuffer sound_buff;
 	//Sound eating_sound;
 	Vector2f position;
+	bool animation_change;
 
 
 public:
 	// Odziedziczono za poœrednictwem elementu Drawable
 	Enemy();
-	void set_default_parameters();
-	void moving();
+	void moving(int acceletarion);
+	void change_texture();
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
 
 };
