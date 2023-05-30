@@ -5,6 +5,8 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->background_t.loadFromFile("assets\\graphics\\placeholder_background.png");
 	this->background.setTexture(background_t, true);
 	this->elapsed_time_movement = 0;
+	this->elapsed_time_animation = 0;
+	this->elapsed_time = 0;
 }
 
 void Game_scene::handling_events(const sf::Event& event)
