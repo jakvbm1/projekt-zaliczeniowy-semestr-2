@@ -8,10 +8,9 @@ Enemy::Enemy()
 	this->texture_1.loadFromFile("assets\\graphics\\enemy_texture_1.png");
 	this->texture_2.loadFromFile("assets\\graphics\\enemy_texture_2.png");
 	this->enemy_sprite.setTexture(texture_1, true);
-	//this->position.x = 800;
-	//this->position.y = 200;
+	this->enemy_sprite.setScale({ 3, 3 });
 	relocating();
-	//this->enemy_sprite.setPosition(position);
+
 	this->animation_change = true;
 }
 
@@ -19,11 +18,11 @@ void Enemy::relocating()
 {
 	std::random_device dev;
 	std::mt19937 rng(dev());
-	std::uniform_int_distribution<std::mt19937::result_type> dist_horizontal(1, 200);
-	std::uniform_int_distribution<std::mt19937::result_type> dist_vertical(1, 400);
+	std::uniform_int_distribution<std::mt19937::result_type> dist_horizontal(1, 800);
+	std::uniform_int_distribution<std::mt19937::result_type> dist_vertical(1, 500);
 
 	this->position.x = 800 + (float)dist_horizontal(rng);
-	this->position.y = 200 + (float)dist_vertical(rng);
+	this->position.y = 150 + (float)dist_vertical(rng);
 	this->enemy_sprite.setPosition(position);
 }
 

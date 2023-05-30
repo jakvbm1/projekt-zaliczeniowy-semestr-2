@@ -18,7 +18,7 @@ private:
 	Font font;
 	Texture background_t;
 	Sprite background;
-	Enemy enemy;
+	Enemy enemy[3];
 	Player player;
 	int elapsed_time_movement;
 	int elapsed_time_animation;
