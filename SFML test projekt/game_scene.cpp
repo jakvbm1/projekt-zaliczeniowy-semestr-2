@@ -26,6 +26,7 @@ void Game_scene::handling_events(const sf::Event& event)
 void Game_scene::render()
 {
 	this->window->draw(background);
+	this->window->draw(food);
 	this->window->draw(player);
 
 	for (int i = 0; i < 3; i++)
@@ -48,12 +49,13 @@ void Game_scene::update(const sf::Time& deltaTime)
 			{
 				this->enemy[i].moving(elapsed_time);
 			}
-			
+			this->food.move();
 			elapsed_time_movement = 0;
 		}
 
 		if (elapsed_time_animation > 500)
 		{
+			this->food.change_texture();
 			for (int i = 0; i < 3; i++)
 			{
 				this->enemy[i].change_texture();

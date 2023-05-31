@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "food.h"
 #include <iostream>
 
 
@@ -21,6 +22,7 @@ private:
 	Enemy enemy[3];
 	Player player;
 	Music music;
+	Food_fish food;
 
 	int elapsed_time_movement;
 	int elapsed_time_animation;
