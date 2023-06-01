@@ -4,7 +4,7 @@ Player::Player()
 {
 	this->texture.loadFromFile("assets\\graphics\\rybka.png");
 	this->fish.setTexture(texture, true);
-	this->position = { 50, 200 };
+	this->position = { 20, 330 };
 	this->fish.setPosition(position);
 	this->fish.setScale({ 0.3, 0.3 });
 
@@ -44,10 +44,11 @@ void Player::player_movement(Keyboard::Key key, bool checkPressed)
 
 void Player::update()
 {
-	if(up)
-		fish.move(0, -5.0f);
-	if(down)
-		fish.move(0, 5.0f);
+	if (up && position.y > -20.0f)
+		position.y -= 5.0f;
+	if(down && position.y < 680.0f)
+		position.y += 5.0f;
+	fish.setPosition(position);
 }
 
 void Player::draw(RenderTarget& target, RenderStates states) const
