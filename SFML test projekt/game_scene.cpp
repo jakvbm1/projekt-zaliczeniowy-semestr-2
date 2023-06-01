@@ -10,7 +10,7 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->music.openFromFile("assets\\audio\\game_music.wav");
 	this->music.setLoop(true);
 	this->music.setVolume(50);
-	this->music.play();
+	//this->music.play();
 }
 
 void Game_scene::handling_events(const sf::Event& event)
@@ -20,7 +20,6 @@ void Game_scene::handling_events(const sf::Event& event)
 	
 	if (event.type == Event::KeyReleased)
 		player.player_movement(event.key.code, false);
-	
 }
 
 void Game_scene::render()

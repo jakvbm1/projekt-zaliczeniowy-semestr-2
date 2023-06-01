@@ -12,34 +12,42 @@ Player::Player()
 	this->down = false;
 }
 
+
 void Player::player_movement(Keyboard::Key key, bool checkPressed)
 {
 	if (checkPressed == true)
 	{
 		if (key == Keyboard::Up)
 		{
+			this->down = false;
 			this->up = true;
 		}
-		if (key == Keyboard::Down)
+		else if (key == Keyboard::Down)
 		{
+			this->up = false;
 			this->down = true;
 		}
 	}
 	if (checkPressed == false)
 	{
-		this->up = false;
-		this->down = false;
+		if (key == Keyboard::Up)
+			this->up = false;
+		else if (key == Keyboard::Down)
+			this->down = false;
+		else
+		{
+			this->up = false;
+			this->down = false;
+		}
 	}
 }
 
 void Player::update()
 {
-	Vector2f movement;
 	if(up)
-		movement.y -= 5.0f;
+		fish.move(0, -5.0f);
 	if(down)
-		movement.y += 5.0f;
-	fish.move(movement);
+		fish.move(0, 5.0f);
 }
 
 void Player::draw(RenderTarget& target, RenderStates states) const
