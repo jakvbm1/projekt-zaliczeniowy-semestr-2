@@ -13,8 +13,9 @@ Rules::Rules(SceneManager* manager, RenderWindow* window): Scene(manager, window
 	this->rules_text_1.setPosition(512, 100);
 
 	this->back_button.set_parameters(400, 100, "Back to menu", 512, 484);
-	this->background_t.loadFromFile("assets\\graphics\\placeholder_background.png");
+	this->background_t.loadFromFile("assets\\graphics\\background_texture.png");
 	this->background.setTexture(background_t, true);
+	this->background.setScale({ 4, 4 });
 }
 
 void Rules::handling_events(const sf::Event& event)

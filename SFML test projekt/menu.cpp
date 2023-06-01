@@ -34,8 +34,9 @@ void Menu::initialize_vars()
 void Menu::initialize_background()
 {
 	
-	this->background_t.loadFromFile("assets\\graphics\\placeholder_background.png");
+	this->background_t.loadFromFile("assets\\graphics\\background_texture.png");
 	this->background.setTexture(background_t, true);
+	this->background.setScale({ 4, 4 });
 }
 
 
