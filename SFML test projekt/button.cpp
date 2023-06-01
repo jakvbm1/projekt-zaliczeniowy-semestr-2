@@ -19,7 +19,7 @@ void Button::pressed()
 
 void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
 {
-	Color color_for_out{ 0x6F5745ff };
+	Color brownish_kinda{ 0x6F5745ff };
 	Color vanilla{ 0xEFEDC3ff };
 	Color slightly_more_intense_vanilla{ 0xF1EC8Bff };
 
@@ -33,7 +33,7 @@ void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
 
 	color = vanilla;
 	color_when_mouse_on = slightly_more_intense_vanilla;
-	outline_color = color_for_out;
+	outline_color = brownish_kinda;
 
 	buff.loadFromFile("assets\\audio\\universfield.wav");
 	click_sound.setBuffer(buff);

@@ -29,6 +29,7 @@ private:
 	float elapsed_time;
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
+	void move_background();
 
 	// Odziedziczono za poœrednictwem elementu Scene
 	virtual void handling_events(const sf::Event& event) override;

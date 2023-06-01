@@ -2,8 +2,9 @@
 
 Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(manager, window)
 {
-	this->background_t.loadFromFile("assets\\graphics\\placeholder_background.png");
-	this->background.setTexture(background_t, true);
+	this->background_t.loadFromFile("assets\\graphics\\game_background.png");
+	this->background.setTexture(background_t);
+	this->background.setScale(4, 4);
 	this->elapsed_time_movement = 0;
 	this->elapsed_time_animation = 0;
 	this->elapsed_time = 0;
@@ -11,6 +12,22 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->music.setLoop(true);
 	this->music.setVolume(50);
 	this->music.play();
+}
+
+void Game_scene::move_background()
+{
+	Vector2f position = background.getPosition();
+
+	if (position.x == -3072)
+	{
+		background.setPosition({ 0, 0 });
+	}
+	else
+	{
+		position += {-1, 0};
+		cout << "GOWNO : " << position.x << '\n';
+		background.setPosition(position);
+	}
 }
 
 void Game_scene::handling_events(const sf::Event& event)
@@ -40,7 +57,6 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
-	cout << elapsed_time << '\n';
 	{
 		if (elapsed_time_movement > 20)
 		{
@@ -49,6 +65,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 				this->enemy[i].moving(elapsed_time);
 			}
 			this->food.move();
+			this->move_background();
 			elapsed_time_movement = 0;
 		}
 
