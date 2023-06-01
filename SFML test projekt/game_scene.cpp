@@ -24,8 +24,7 @@ void Game_scene::move_background()
 	}
 	else
 	{
-		position += {-1, 0};
-		cout << "GOWNO : " << position.x << '\n';
+		position += {-2, 0};
 		background.setPosition(position);
 	}
 }
