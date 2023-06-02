@@ -70,6 +70,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 
 		if (elapsed_time_animation > 500)
 		{
+			this->player.change_texture();
 			this->food.change_texture();
 			for (int i = 0; i < 3; i++)
 			{

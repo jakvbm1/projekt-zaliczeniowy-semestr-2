@@ -2,14 +2,16 @@
 
 Player::Player()
 {
-	this->texture.loadFromFile("assets\\graphics\\player_texture_1.png");
-	this->fish.setTexture(texture, true);
+	this->texture_1.loadFromFile("assets\\graphics\\player_texture_1.png");
+	this->texture_2.loadFromFile("assets\\graphics\\player_texture_2.png");
+	this->fish.setTexture(texture_1, true);
 	this->position = { 20, 330 };
 	this->fish.setPosition(position);
 	this->fish.setScale({ 4, 4 });
 
 	this->up = false;
 	this->down = false;
+	this->animation_change = true;
 }
 
 
@@ -49,6 +51,21 @@ void Player::update()
 	if(down && position.y < 680.0f)
 		position.y += 5.0f;
 	fish.setPosition(position);
+}
+
+void Player::change_texture()
+{
+	if (animation_change)
+	{
+		fish.setTexture(texture_2);
+		animation_change = false;
+	}
+
+	else
+	{
+		fish.setTexture(texture_1);
+		animation_change = true;
+	}
 }
 
 void Player::draw(RenderTarget& target, RenderStates states) const

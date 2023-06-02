@@ -9,17 +9,22 @@ using namespace sf;
 class Player : public Drawable
 {
 private:
-	Texture texture;
+	Texture texture_1;
+	Texture texture_2;
 	Sprite fish;
 	Vector2f position;
 
 	bool up;
 	bool down;
 
+	bool animation_change;
+
 public:
 	Player();
 	void player_movement(Keyboard::Key key, bool checkPressed);
 	void update();
+	void change_texture();
+
 
 	// Odziedziczono za poœrednictwem elementu Drawable
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
