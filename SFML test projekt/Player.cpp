@@ -2,11 +2,11 @@
 
 Player::Player()
 {
-	this->texture.loadFromFile("assets\\graphics\\rybka.png");
+	this->texture.loadFromFile("assets\\graphics\\player_texture_1.png");
 	this->fish.setTexture(texture, true);
 	this->position = { 20, 330 };
 	this->fish.setPosition(position);
-	this->fish.setScale({ 0.3, 0.3 });
+	this->fish.setScale({ 4, 4 });
 
 	this->up = false;
 	this->down = false;
