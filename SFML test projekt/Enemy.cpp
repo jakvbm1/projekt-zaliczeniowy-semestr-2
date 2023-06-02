@@ -8,7 +8,7 @@ Enemy::Enemy()
 	this->texture_1.loadFromFile("assets\\graphics\\enemy_texture_1.png");
 	this->texture_2.loadFromFile("assets\\graphics\\enemy_texture_2.png");
 	this->enemy_sprite.setTexture(texture_1, true);
-	this->enemy_sprite.setScale({ 3, 3 });
+	this->enemy_sprite.setScale({ 4, 4 });
 	relocating();
 
 	this->animation_change = true;

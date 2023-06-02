@@ -5,6 +5,7 @@ Food_fish::Food_fish()
 	this->texture_1.loadFromFile("assets\\graphics\\food_texture_1.png");
 	this->texture_2.loadFromFile("assets\\graphics\\food_texture_2.png");
 	this->food_sprite.setTexture(texture_1, true);
+	this->food_sprite.setScale({ 4, 4 });
 	this->animation_change = true;
 	relocating();
 }
