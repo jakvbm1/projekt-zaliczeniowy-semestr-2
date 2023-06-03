@@ -24,6 +24,7 @@ void SceneManager::set_scene(unique_ptr<Scene> newScene)
 	current_scene = move(newScene);
 }
 
+
 SceneManager::~SceneManager()
 {
 }

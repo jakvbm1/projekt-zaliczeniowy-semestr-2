@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "food.h"
+#include <vector>
 #include <iostream>
 
 
@@ -19,17 +20,19 @@ private:
 	Font font;
 	Texture background_t;
 	Sprite background;
-	Enemy enemy[3];
 	Player player;
 	Music music;
 	Food_fish food;
+	vector<Enemy *> enemies;
 
 	int elapsed_time_movement;
 	int elapsed_time_animation;
 	float elapsed_time;
+	float elapsed_time_adding_enemy;
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
 	void move_background();
+	void add_enemy();
 
 	// Odziedziczono za poœrednictwem elementu Scene
 	virtual void handling_events(const sf::Event& event) override;

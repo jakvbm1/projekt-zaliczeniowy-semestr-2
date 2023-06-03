@@ -8,10 +8,17 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->elapsed_time_movement = 0;
 	this->elapsed_time_animation = 0;
 	this->elapsed_time = 0;
+	this->elapsed_time_adding_enemy = 0;
 	this->music.openFromFile("assets\\audio\\game_music.wav");
 	this->music.setLoop(true);
 	this->music.setVolume(50);
 	this->music.play();
+
+	for (int i = 0; i < 2; i++)
+	{
+		this->enemies.push_back(new Enemy());
+	}
+
 }
 
 void Game_scene::move_background()
@@ -29,6 +36,15 @@ void Game_scene::move_background()
 	}
 }
 
+void Game_scene::add_enemy()
+{
+	if (enemies.size() < 6)
+	{
+		enemies.push_back(new Enemy());
+	}
+
+}
+
 void Game_scene::handling_events(const sf::Event& event)
 {
 	if (event.type == Event::KeyPressed)
@@ -44,9 +60,9 @@ void Game_scene::render()
 	this->window->draw(food);
 	this->window->draw(player);
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < enemies.size(); i++)
 	{
-		this->window->draw(enemy[i]);
+		this->window->draw(*enemies[i]);
 	}
 }
 
@@ -56,12 +72,14 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
+	this->elapsed_time_adding_enemy += deltaTime.asSeconds();
 	{
 		if (elapsed_time_movement > 20)
 		{
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < enemies.size(); i++)
 			{
-				this->enemy[i].moving(elapsed_time);
+				this->enemies[i]->moving(elapsed_time);
+
 			}
 			this->food.move();
 			this->move_background();
@@ -72,12 +90,18 @@ void Game_scene::update(const sf::Time& deltaTime)
 		{
 			this->player.change_texture();
 			this->food.change_texture();
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < enemies.size(); i++)
 			{
-				this->enemy[i].change_texture();
+				this->enemies[i]->change_texture();
 			}
 			
 			elapsed_time_animation = 0;
+		}
+
+		if (elapsed_time_adding_enemy > 50)
+		{
+			add_enemy();
+			elapsed_time_adding_enemy = 0;
 		}
 	}
 
