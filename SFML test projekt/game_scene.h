@@ -22,6 +22,7 @@ private:
 	Sprite background;
 	Player player;
 	Music music;
+	vector<Food_fish*> foodies;
 	Food_fish food;
 	vector<Enemy *> enemies;
 

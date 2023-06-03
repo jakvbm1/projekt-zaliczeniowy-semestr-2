@@ -17,7 +17,7 @@ private:
 
 public:
 	Food_fish();
-	void move();
+	void moving();
 	void change_texture();
 	void relocating();
 	// Odziedziczono za poœrednictwem elementu Drawable

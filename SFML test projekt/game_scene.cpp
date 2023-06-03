@@ -19,6 +19,11 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 		this->enemies.push_back(new Enemy());
 	}
 
+	for (int i = 0; i < 3; i++)
+	{
+		this->foodies.push_back(new Food_fish());
+	}
+
 }
 
 void Game_scene::move_background()
@@ -57,7 +62,11 @@ void Game_scene::handling_events(const sf::Event& event)
 void Game_scene::render()
 {
 	this->window->draw(background);
-	this->window->draw(food);
+	for (int i = 0; i < foodies.size(); i++)
+	{
+		this->window->draw(*foodies[i]);
+	}
+	//this->window->draw(food);
 	this->window->draw(player);
 
 	for (int i = 0; i < enemies.size(); i++)
@@ -81,7 +90,12 @@ void Game_scene::update(const sf::Time& deltaTime)
 				this->enemies[i]->moving(elapsed_time);
 
 			}
-			this->food.move();
+
+			for (int i = 0; i < foodies.size(); i++)
+			{
+				this->foodies[i]->moving();
+			}
+			//this->food.moving();
 			this->move_background();
 			elapsed_time_movement = 0;
 		}
@@ -89,7 +103,12 @@ void Game_scene::update(const sf::Time& deltaTime)
 		if (elapsed_time_animation > 500)
 		{
 			this->player.change_texture();
-			this->food.change_texture();
+			//this->food.change_texture();
+			for (int i = 0; i < foodies.size(); i++)
+			{
+				this->foodies[i]->change_texture();
+			}
+
 			for (int i = 0; i < enemies.size(); i++)
 			{
 				this->enemies[i]->change_texture();

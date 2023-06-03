@@ -10,8 +10,14 @@ Food_fish::Food_fish()
 	relocating();
 }
 
-void Food_fish::move()
+void Food_fish::moving()
 {
+	if (position.x < -64)
+	{
+		relocating();
+	}
+
+
 	if (animation_change)
 	{
 		this->position -= {2, 2};
@@ -46,10 +52,10 @@ void Food_fish::relocating()
 	std::random_device dev;
 	std::mt19937 rng(dev());
 	std::uniform_int_distribution<std::mt19937::result_type> dist_horizontal(1, 800);
-	std::uniform_int_distribution<std::mt19937::result_type> dist_vertical(1, 500);
+	std::uniform_int_distribution<std::mt19937::result_type> dist_vertical(1, 640);
 
-	this->position.x = 800 + (float)dist_horizontal(rng);
-	this->position.y = 150 + (float)dist_vertical(rng);
+	this->position.x = 960 + (float)dist_horizontal(rng);
+	this->position.y = 64 + (float)dist_vertical(rng);
 	this->food_sprite.setPosition(position);
 }
 

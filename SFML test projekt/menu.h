@@ -32,7 +32,7 @@ private:
 public:
 
 	Menu(SceneManager* manager, RenderWindow* window);
-	~Menu();
+	virtual ~Menu();
 	virtual void handling_events(const sf::Event& event) override;
 	virtual void update(const sf::Time& deltaTime) override;
 	virtual void render() override;
