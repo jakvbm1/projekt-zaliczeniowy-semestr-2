@@ -13,6 +13,7 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->music.setLoop(true);
 	this->music.setVolume(50);
 	this->music.play();
+	this->collision = false;
 
 	for (int i = 0; i < 2; i++)
 	{
@@ -50,6 +51,17 @@ void Game_scene::add_enemy()
 
 }
 
+void Game_scene::check_collision()
+{
+	for (int i = 0; i < enemies.size(); i++)
+	{
+		if (player.pass_position().intersects(enemies[i]->pass_position()))
+		{
+			this->collision = true;
+		}
+	}
+}
+
 void Game_scene::handling_events(const sf::Event& event)
 {
 	if (event.type == Event::KeyPressed)
@@ -77,7 +89,17 @@ void Game_scene::render()
 
 void Game_scene::update(const sf::Time& deltaTime)
 {
+	if (this->collision)
+	{
+		cout << "Collison" << endl;
+	}
+	else
+	{
+		cout << "No Collision" << endl;
+	}
+
 	player.update();
+
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
@@ -123,6 +145,4 @@ void Game_scene::update(const sf::Time& deltaTime)
 			elapsed_time_adding_enemy = 0;
 		}
 	}
-
-	
 }

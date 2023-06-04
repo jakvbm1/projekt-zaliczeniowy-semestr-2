@@ -24,6 +24,7 @@ public:
 	void player_movement(Keyboard::Key key, bool checkPressed);
 	void update();
 	void change_texture();
+	FloatRect pass_position();
 
 
 	// Odziedziczono za poœrednictwem elementu Drawable

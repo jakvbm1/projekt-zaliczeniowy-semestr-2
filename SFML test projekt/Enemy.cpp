@@ -63,6 +63,11 @@ void Enemy::change_texture()
 
 }
 
+FloatRect Enemy::pass_position()
+{
+	return this->enemy_sprite.getGlobalBounds();
+}
+
 void Enemy::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(enemy_sprite, states);

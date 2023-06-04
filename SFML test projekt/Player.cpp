@@ -68,6 +68,11 @@ void Player::change_texture()
 	}
 }
 
+FloatRect Player::pass_position()
+{
+	return fish.getGlobalBounds();
+}
+
 void Player::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(fish, states);

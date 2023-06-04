@@ -30,10 +30,12 @@ private:
 	int elapsed_time_animation;
 	float elapsed_time;
 	float elapsed_time_adding_enemy;
+	bool collision;
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
 	void move_background();
 	void add_enemy();
+	void check_collision();
 
 	// Odziedziczono za poœrednictwem elementu Scene
 	virtual void handling_events(const sf::Event& event) override;

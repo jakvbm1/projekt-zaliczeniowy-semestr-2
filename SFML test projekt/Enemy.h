@@ -24,6 +24,7 @@ public:
 	void relocating();
 	void moving(float acceletarion);
 	void change_texture();
+	FloatRect pass_position();
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
 
 };
