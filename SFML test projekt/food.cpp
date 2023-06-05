@@ -59,6 +59,11 @@ void Food_fish::relocating()
 	this->food_sprite.setPosition(position);
 }
 
+FloatRect Food_fish::pass_position()
+{
+	return this->food_sprite.getGlobalBounds();
+}
+
 void Food_fish::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(food_sprite, states);

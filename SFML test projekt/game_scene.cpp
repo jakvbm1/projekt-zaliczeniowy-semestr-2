@@ -13,7 +13,6 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->music.setLoop(true);
 	this->music.setVolume(50);
 	this->music.play();
-	this->collision = false;
 
 	for (int i = 0; i < 2; i++)
 	{
@@ -51,14 +50,30 @@ void Game_scene::add_enemy()
 
 }
 
-void Game_scene::check_collision()
+bool Game_scene::check_collision_enemy(int i)
 {
-	for (int i = 0; i < enemies.size(); i++)
-	{
+
 		if (player.pass_position().intersects(enemies[i]->pass_position()))
 		{
-			this->collision = true;
+			return true;
 		}
+
+		else
+		{
+			return false;
+		}
+}
+
+bool Game_scene::check_collision_food(int i)
+{
+	if (player.pass_position().intersects(foodies[i]->pass_position()))
+	{
+		return true;
+	}
+
+	else
+	{
+		return false;
 	}
 }
 
@@ -78,7 +93,6 @@ void Game_scene::render()
 	{
 		this->window->draw(*foodies[i]);
 	}
-	//this->window->draw(food);
 	this->window->draw(player);
 
 	for (int i = 0; i < enemies.size(); i++)
@@ -89,14 +103,7 @@ void Game_scene::render()
 
 void Game_scene::update(const sf::Time& deltaTime)
 {
-	if (this->collision)
-	{
-		cout << "Collison" << endl;
-	}
-	else
-	{
-		cout << "No Collision" << endl;
-	}
+
 
 	player.update();
 
@@ -104,8 +111,8 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
 	this->elapsed_time_adding_enemy += deltaTime.asSeconds();
-	{
-		if (elapsed_time_movement > 20)
+	
+	if (elapsed_time_movement > 20)
 		{
 			for (int i = 0; i < enemies.size(); i++)
 			{
@@ -117,15 +124,13 @@ void Game_scene::update(const sf::Time& deltaTime)
 			{
 				this->foodies[i]->moving();
 			}
-			//this->food.moving();
 			this->move_background();
 			elapsed_time_movement = 0;
 		}
 
-		if (elapsed_time_animation > 500)
+	if (elapsed_time_animation > 500)
 		{
 			this->player.change_texture();
-			//this->food.change_texture();
 			for (int i = 0; i < foodies.size(); i++)
 			{
 				this->foodies[i]->change_texture();
@@ -139,10 +144,25 @@ void Game_scene::update(const sf::Time& deltaTime)
 			elapsed_time_animation = 0;
 		}
 
-		if (elapsed_time_adding_enemy > 50)
+	if (elapsed_time_adding_enemy > 50)
 		{
 			add_enemy();
 			elapsed_time_adding_enemy = 0;
+		}
+
+	for (int i = 0; i < enemies.size(); i++)
+	{
+		if (check_collision_enemy(i))
+		{
+			this->enemies[i]->relocating();
+		}
+	}
+
+	for (int i = 0; i < foodies.size(); i++)
+	{
+		if (check_collision_food(i))
+		{
+			this->foodies[i]->relocating();
 		}
 	}
 }

@@ -20,6 +20,7 @@ public:
 	void moving();
 	void change_texture();
 	void relocating();
+	FloatRect pass_position();
 	// Odziedziczono za poœrednictwem elementu Drawable
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
 
