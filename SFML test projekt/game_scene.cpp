@@ -9,10 +9,15 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->elapsed_time_animation = 0;
 	this->elapsed_time = 0;
 	this->elapsed_time_adding_enemy = 0;
+	this->points = 0;
 	this->music.openFromFile("assets\\audio\\game_music.wav");
 	this->music.setLoop(true);
 	this->music.setVolume(50);
 	this->music.play();
+	this->font.loadFromFile("assets\\fonts\\dpcomic.ttf");
+	this->points_displayed.setFont(font);
+	update_point_text();
+
 
 	for (int i = 0; i < 2; i++)
 	{
@@ -23,6 +28,17 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	{
 		this->foodies.push_back(new Food_fish());
 	}
+
+}
+
+void Game_scene::update_point_text()
+{
+	string points_s = "Points: " + to_string((int)points);
+	this->points_displayed.setString(points_s);
+	
+	const  FloatRect bounds_title(points_displayed.getLocalBounds());
+	this->points_displayed.setOrigin(bounds_title.width / 2, bounds_title.height / 2);
+	this->points_displayed.setPosition(512, 100);
 
 }
 
@@ -99,6 +115,8 @@ void Game_scene::render()
 	{
 		this->window->draw(*enemies[i]);
 	}
+
+	this->window->draw(points_displayed);
 }
 
 void Game_scene::update(const sf::Time& deltaTime)
@@ -111,6 +129,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
 	this->elapsed_time_adding_enemy += deltaTime.asSeconds();
+	this->points += deltaTime.asSeconds() * 2;
 	
 	if (elapsed_time_movement > 20)
 		{
@@ -163,6 +182,8 @@ void Game_scene::update(const sf::Time& deltaTime)
 		if (check_collision_food(i))
 		{
 			this->foodies[i]->relocating();
+			points += 20;
 		}
 	}
+	update_point_text();
 }

@@ -30,8 +30,15 @@ private:
 	int elapsed_time_animation;
 	float elapsed_time;
 	float elapsed_time_adding_enemy;
+
+	float points;
+	Text points_displayed;
+
+
+
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
+	void update_point_text();
 	void move_background();
 	void add_enemy();
 	bool check_collision_enemy(int i);
