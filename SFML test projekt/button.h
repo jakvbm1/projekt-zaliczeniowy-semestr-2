@@ -8,6 +8,10 @@
 using namespace sf;
 using namespace std;
 
+extern sf::Color vanilla;
+extern sf::Color intense_vanilla;
+extern sf::Color brown;
+
 class Button : public Drawable
 {
 	RectangleShape shape;

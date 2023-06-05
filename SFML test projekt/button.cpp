@@ -1,5 +1,9 @@
 #include "button.h"
 
+Color vanilla{ 0xEFEDC3ff };
+Color intense_vanilla{ 0x6F5745ff };
+Color brown{ 0x6F5745ff };
+
 Button::Button()
 {
 }
@@ -19,9 +23,6 @@ void Button::pressed()
 
 void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
 {
-	Color brownish_kinda{ 0x6F5745ff };
-	Color vanilla{ 0xEFEDC3ff };
-	Color slightly_more_intense_vanilla{ 0xF1EC8Bff };
 
 	shape.setPosition(pos_x, pos_y);
 	shape.setSize(Vector2<float> {(float)x, (float)y});
@@ -32,8 +33,8 @@ void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
 	shape.setFillColor(color);
 
 	color = vanilla;
-	color_when_mouse_on = slightly_more_intense_vanilla;
-	outline_color = brownish_kinda;
+	color_when_mouse_on = intense_vanilla;
+	outline_color = brown;
 
 	buff.loadFromFile("assets\\audio\\universfield.wav");
 	click_sound.setBuffer(buff);

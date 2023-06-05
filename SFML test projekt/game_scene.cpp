@@ -5,17 +5,24 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->background_t.loadFromFile("assets\\graphics\\game_background.png");
 	this->background.setTexture(background_t);
 	this->background.setScale(4, 4);
+
 	this->elapsed_time_movement = 0;
 	this->elapsed_time_animation = 0;
 	this->elapsed_time = 0;
 	this->elapsed_time_adding_enemy = 0;
 	this->points = 0;
+
 	this->music.openFromFile("assets\\audio\\game_music.wav");
 	this->music.setLoop(true);
 	this->music.setVolume(50);
 	this->music.play();
+
 	this->font.loadFromFile("assets\\fonts\\dpcomic.ttf");
 	this->points_displayed.setFont(font);
+	this->points_displayed.setFillColor(vanilla);
+	this->points_displayed.setOutlineColor(brown);
+	this->points_displayed.setOutlineThickness(3);
+	this->points_displayed.setCharacterSize(48);
 	update_point_text();
 
 
@@ -38,7 +45,7 @@ void Game_scene::update_point_text()
 	
 	const  FloatRect bounds_title(points_displayed.getLocalBounds());
 	this->points_displayed.setOrigin(bounds_title.width / 2, bounds_title.height / 2);
-	this->points_displayed.setPosition(512, 100);
+	this->points_displayed.setPosition(512, 60);
 
 }
 

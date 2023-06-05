@@ -22,7 +22,8 @@ void Menu::initialize_vars()
 	this->authors.setFont(main_font);
 	this->authors.setCharacterSize(48);
 	this->authors.setString("Damian Knopek, Jakub Miarka");
-	this->authors.setOutlineColor(Color::Black);
+	this->authors.setOutlineColor(brown);
+	this->authors.setFillColor(vanilla);
 	this->authors.setOutlineThickness(2);
 	const  FloatRect bounds_company(this->authors.getLocalBounds());
 	this->authors.setOrigin(bounds_company.width / 2, bounds_company.height / 2);
