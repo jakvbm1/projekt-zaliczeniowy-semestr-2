@@ -18,12 +18,18 @@ private:
 	//variables used in menu
 	Texture background_t;
 	Sprite background;
+
+	Texture logo_t;
+	Sprite logo;
+
 	Font main_font;
+
 	Button start_button;
 	Button exit_button;
 	Button rules_button;
 	Button credits_button;
-	Text title;
+
+
 	Text authors;
 
 	void initialize_vars();

@@ -7,16 +7,16 @@ void Menu::initialize_vars()
 	this->rules_button.set_parameters(190, 100, "rules", 412, 334);
 	this->credits_button.set_parameters(190, 100, "credits", 622, 334);
 
+	this->logo_t.loadFromFile("assets\\graphics\\logo.png");
+	this->logo.setScale({ 4, 4 });
+	this->logo.setTexture(logo_t);
+	const FloatRect bounds_logo(logo.getLocalBounds());
+	this->logo.setOrigin(bounds_logo.width / 2, bounds_logo.height / 2);
+	this->logo.setPosition(512, 100);
+
 
 	this->main_font.loadFromFile("assets\\fonts\\dpcomic.ttf");
-	this->title.setFont(main_font);
-	this->title.setCharacterSize(96);
-	this->title.setString("RYBKI");
-	this->title.setOutlineColor(Color::Black);
-	this->title.setOutlineThickness(3);
-	const  FloatRect bounds_title(title.getLocalBounds());
-	this->title.setOrigin(bounds_title.width / 2, bounds_title.height / 2);
-	this->title.setPosition(512, 100);
+
 
 
 	this->authors.setFont(main_font);
@@ -107,9 +107,8 @@ void Menu::update(const sf::Time& deltaTime)
 
 void Menu::render()
 {
-	//this->window->clear();
 	this->window->draw(background);
-	this->window->draw(title);
+	this->window->draw(logo);
 	this->window->draw(authors);
 	this->window->draw(start_button);
 	this->window->draw(rules_button);

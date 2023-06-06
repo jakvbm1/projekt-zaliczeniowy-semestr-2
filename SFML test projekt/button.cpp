@@ -1,7 +1,7 @@
 #include "button.h"
 
 Color vanilla{ 0xEFEDC3ff };
-Color intense_vanilla{ 0x6F5745ff };
+Color intense_vanilla{ 0xeae7afff };
 Color brown{ 0x6F5745ff };
 
 Button::Button()
