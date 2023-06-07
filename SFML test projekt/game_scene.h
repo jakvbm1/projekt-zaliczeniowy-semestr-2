@@ -25,7 +25,7 @@ private:
 	Music music;
 	vector<Food_fish*> foodies;
 	Food_fish food;
-	vector<Enemy *> enemies;
+	vector<Enemy*> enemies;
 
 	int elapsed_time_movement;
 	int elapsed_time_animation;
@@ -35,7 +35,8 @@ private:
 	float points;
 	Text points_displayed;
 
-
+	//tymczasowo
+	RectangleShape fish_hitbox;
 
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);

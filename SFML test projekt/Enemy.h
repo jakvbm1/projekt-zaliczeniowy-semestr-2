@@ -17,8 +17,8 @@ private:
 	Vector2f position;
 	bool animation_change;
 
-
 public:
+
 	// Odziedziczono za poœrednictwem elementu Drawable
 	Enemy();
 	void relocating();
@@ -26,5 +26,4 @@ public:
 	void change_texture();
 	FloatRect pass_position();
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
-
 };

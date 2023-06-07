@@ -36,6 +36,9 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 		this->foodies.push_back(new Food_fish());
 	}
 
+	//tymczasowo
+	this->fish_hitbox.setPosition(player.pass_hitbox_position());
+	this->fish_hitbox.setSize(player.pass_hitbox_size());
 }
 
 void Game_scene::update_point_text()
@@ -75,16 +78,15 @@ void Game_scene::add_enemy()
 
 bool Game_scene::check_collision_enemy(int i)
 {
+	if (player.pass_position().intersects(enemies[i]->pass_position()))
+	{
+		return true;
+	}
 
-		if (player.pass_position().intersects(enemies[i]->pass_position()))
-		{
-			return true;
-		}
-
-		else
-		{
-			return false;
-		}
+	else
+	{
+		return false;
+	}
 }
 
 bool Game_scene::check_collision_food(int i)
@@ -124,11 +126,15 @@ void Game_scene::render()
 	}
 
 	this->window->draw(points_displayed);
+
+	//this->window->draw(fish_hitbox);
+	
 }
 
 void Game_scene::update(const sf::Time& deltaTime)
 {
-
+	//tymczasowo
+	fish_hitbox.setPosition(player.pass_hitbox_position());
 
 	player.update();
 
@@ -139,42 +145,41 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->points += deltaTime.asSeconds() * 2;
 	
 	if (elapsed_time_movement > 20)
+	{
+		for (int i = 0; i < enemies.size(); i++)
 		{
-			for (int i = 0; i < enemies.size(); i++)
-			{
-				this->enemies[i]->moving(elapsed_time);
-
-			}
-
-			for (int i = 0; i < foodies.size(); i++)
-			{
-				this->foodies[i]->moving();
-			}
-			this->move_background();
-			elapsed_time_movement = 0;
+			this->enemies[i]->moving(elapsed_time);
 		}
+
+		for (int i = 0; i < foodies.size(); i++)
+		{
+			this->foodies[i]->moving();
+		}
+		this->move_background();
+		elapsed_time_movement = 0;
+	}
 
 	if (elapsed_time_animation > 500)
+	{
+		this->player.change_texture();
+		for (int i = 0; i < foodies.size(); i++)
 		{
-			this->player.change_texture();
-			for (int i = 0; i < foodies.size(); i++)
-			{
-				this->foodies[i]->change_texture();
-			}
-
-			for (int i = 0; i < enemies.size(); i++)
-			{
-				this->enemies[i]->change_texture();
-			}
-			
-			elapsed_time_animation = 0;
+			this->foodies[i]->change_texture();
 		}
+
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			this->enemies[i]->change_texture();
+		}
+			
+		elapsed_time_animation = 0;
+	}
 
 	if (elapsed_time_adding_enemy > 50)
-		{
-			add_enemy();
-			elapsed_time_adding_enemy = 0;
-		}
+	{
+		add_enemy();
+		elapsed_time_adding_enemy = 0;
+	}
 
 	for (int i = 0; i < enemies.size(); i++)
 	{

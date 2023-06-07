@@ -5,7 +5,7 @@ Player::Player()
 	this->texture_1.loadFromFile("assets\\graphics\\player_texture_1.png");
 	this->texture_2.loadFromFile("assets\\graphics\\player_texture_2.png");
 	this->fish.setTexture(texture_1, true);
-	this->position = { 20, 330 };
+	this->position = { 75, 330 };
 	this->fish.setPosition(position);
 	this->fish.setScale({ 4, 4 });
 
@@ -70,7 +70,28 @@ void Player::change_texture()
 
 FloatRect Player::pass_position()
 {
-	return fish.getGlobalBounds();
+	FloatRect hitbox;
+	hitbox.height = fish.getGlobalBounds().height - 55;
+	hitbox.width = fish.getGlobalBounds().width - 100;
+	hitbox.left = fish.getGlobalBounds().left + 90;
+	hitbox.top = fish.getGlobalBounds().top + 30;
+	return hitbox;
+}
+
+Vector2f Player::pass_hitbox_position()
+{
+	Vector2f hitbox_position;
+	hitbox_position.x = fish.getGlobalBounds().left + 90;
+	hitbox_position.y = fish.getGlobalBounds().top + 30;
+	return hitbox_position;
+}
+
+Vector2f Player::pass_hitbox_size()
+{
+	Vector2f hitbox_size;
+	hitbox_size.x = fish.getGlobalBounds().width - 100;
+	hitbox_size.y = fish.getGlobalBounds().height - 55;
+	return hitbox_size;
 }
 
 void Player::draw(RenderTarget& target, RenderStates states) const

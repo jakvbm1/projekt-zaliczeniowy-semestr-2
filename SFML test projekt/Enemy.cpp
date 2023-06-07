@@ -2,9 +2,6 @@
 
 Enemy::Enemy()
 {
-
-
-
 	this->texture_1.loadFromFile("assets\\graphics\\enemy_texture_1.png");
 	this->texture_2.loadFromFile("assets\\graphics\\enemy_texture_2.png");
 	this->enemy_sprite.setTexture(texture_1, true);
@@ -28,7 +25,6 @@ void Enemy::relocating()
 
 void Enemy::moving(float acceletarion)
 {
-
 	if (position.x < -200)
 	{
 		relocating();
@@ -40,11 +36,8 @@ void Enemy::moving(float acceletarion)
 		how_fast = 10;
 	}
 
-
-
-		this->position -= {3 + how_fast, 0};
-		this->enemy_sprite.setPosition(position);
-
+	this->position -= {3 + how_fast, 0};
+	this->enemy_sprite.setPosition(position);
 }
 
 void Enemy::change_texture()
@@ -60,12 +53,16 @@ void Enemy::change_texture()
 		enemy_sprite.setTexture(texture_1);
 		this->animation_change = true;
 	}
-
 }
 
 FloatRect Enemy::pass_position()
 {
-	return this->enemy_sprite.getGlobalBounds();
+	FloatRect hitbox;
+	hitbox.height = enemy_sprite.getGlobalBounds().height - 70;
+	hitbox.width = enemy_sprite.getGlobalBounds().width - 200;
+	hitbox.left = enemy_sprite.getGlobalBounds().left + 15;
+	hitbox.top = enemy_sprite.getGlobalBounds().top + 55;
+	return hitbox;
 }
 
 void Enemy::draw(RenderTarget& target, RenderStates states) const
