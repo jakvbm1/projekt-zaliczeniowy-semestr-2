@@ -136,6 +136,7 @@
     <ClCompile Include="credits.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="food.cpp" />
+    <ClCompile Include="game_over_scene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="game_scene.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="credits.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="food.h" />
+    <ClInclude Include="game_over_scene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="game_scene.h" />

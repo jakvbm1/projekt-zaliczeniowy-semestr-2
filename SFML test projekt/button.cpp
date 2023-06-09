@@ -48,7 +48,7 @@ void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
 	shape.setOutlineThickness(3);
 	shape.setFillColor(color);
 
-	const  FloatRect bounds(text.getLocalBounds());
+	const FloatRect bounds(text.getLocalBounds());
 	const Vector2f box(shape.getSize());
 	text.setOrigin((bounds.width - box.x) / 2 + bounds.left, (bounds.height - box.y) / 2 + bounds.top);
 	text.setPosition(pos_x - (x / 2), pos_y + (y / 2));

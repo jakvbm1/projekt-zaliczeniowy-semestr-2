@@ -54,52 +54,52 @@ Menu::~Menu()
 void Menu::handling_events(const sf::Event& event)
 {
 
-		Vector2i mouse_position = Mouse::getPosition(*this->window);
-        switch (event.type)
-        {
+	Vector2i mouse_position = Mouse::getPosition(*this->window);
+    switch (event.type)
+    {
 
-		case Event::MouseMoved:
-		{
-			exit_button.mouse_on_highlight(mouse_position);
-			start_button.mouse_on_highlight(mouse_position);
-			credits_button.mouse_on_highlight(mouse_position);
-			rules_button.mouse_on_highlight(mouse_position);
-			break;
-		}
-
-        case Event::MouseButtonPressed:
-        {
-            
-            if (exit_button.is_mouse_on(mouse_position))
-            {
-                exit_button.pressed();
-				this->window->close();
-            
-            }
-
-            else if (start_button.is_mouse_on(mouse_position))
-            {
-                start_button.pressed();
-				manager->set_scene(std::make_unique<Game_scene>(manager, window));
-            }
-
-            else if (rules_button.is_mouse_on(mouse_position))
-            {
-                rules_button.pressed();
-				manager->set_scene(std::make_unique<Rules>(manager, window));
-
-            }
-
-            else if (credits_button.is_mouse_on(mouse_position))
-            {
-                credits_button.pressed();
-				manager->set_scene(std::make_unique<Credits>(manager, window));
-            }
-            break;
-        }
-
-        }
+	case Event::MouseMoved:
+	{
+		exit_button.mouse_on_highlight(mouse_position);
+		start_button.mouse_on_highlight(mouse_position);
+		credits_button.mouse_on_highlight(mouse_position);
+		rules_button.mouse_on_highlight(mouse_position);
+		break;
 	}
+
+    case Event::MouseButtonPressed:
+	{
+            
+        if (exit_button.is_mouse_on(mouse_position))
+        {
+            exit_button.pressed();
+			this->window->close();
+            
+        }
+
+        else if (start_button.is_mouse_on(mouse_position))
+        {
+            start_button.pressed();
+			manager->set_scene(std::make_unique<Game_scene>(manager, window));
+        }
+
+        else if (rules_button.is_mouse_on(mouse_position))
+        {
+            rules_button.pressed();
+			manager->set_scene(std::make_unique<Rules>(manager, window));
+
+        }
+
+        else if (credits_button.is_mouse_on(mouse_position))
+        {
+            credits_button.pressed();
+			manager->set_scene(std::make_unique<Credits>(manager, window));
+        }
+        break;
+    }
+
+    }
+}
 
 void Menu::update(const sf::Time& deltaTime)
 {

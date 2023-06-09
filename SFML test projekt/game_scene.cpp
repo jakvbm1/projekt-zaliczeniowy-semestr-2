@@ -36,9 +36,7 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 		this->foodies.push_back(new Food_fish());
 	}
 
-	//tymczasowo
-	this->fish_hitbox.setPosition(player.pass_hitbox_position());
-	this->fish_hitbox.setSize(player.pass_hitbox_size());
+	this->hearts = 3;
 }
 
 void Game_scene::update_point_text()
@@ -126,16 +124,10 @@ void Game_scene::render()
 	}
 
 	this->window->draw(points_displayed);
-
-	//this->window->draw(fish_hitbox);
-	
 }
 
 void Game_scene::update(const sf::Time& deltaTime)
 {
-	//tymczasowo
-	fish_hitbox.setPosition(player.pass_hitbox_position());
-
 	player.update();
 
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
@@ -186,6 +178,12 @@ void Game_scene::update(const sf::Time& deltaTime)
 		if (check_collision_enemy(i))
 		{
 			this->enemies[i]->relocating();
+			this->hearts -= 1;
+
+			if (this->hearts < 1)
+			{
+				manager->set_scene(std::make_unique<Game_over_scene>(manager, window));
+			}
 		}
 	}
 
@@ -194,8 +192,8 @@ void Game_scene::update(const sf::Time& deltaTime)
 		if (check_collision_food(i))
 		{
 			this->foodies[i]->relocating();
-			points += 20;
+			this->points += 20;
 		}
 	}
-	update_point_text();
+	//update_point_text();
 }

@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "food.h"
 #include "button.h"
+#include "game_over_scene.h"
 #include <vector>
 #include <iostream>
 
@@ -23,6 +24,7 @@ private:
 	Sprite background;
 	Player player;
 	Music music;
+
 	vector<Food_fish*> foodies;
 	Food_fish food;
 	vector<Enemy*> enemies;
@@ -35,8 +37,7 @@ private:
 	float points;
 	Text points_displayed;
 
-	//tymczasowo
-	RectangleShape fish_hitbox;
+	int hearts;
 
 public:
 	Game_scene(SceneManager* manager, RenderWindow* window);
