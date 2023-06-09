@@ -12,13 +12,8 @@ Button::Button()
 
 void Button::pressed()
 {
-	
 	click_sound.setPlayingOffset(seconds(0.2));
 	click_sound.play();
-	//sleep(seconds(0.3));
-	
-	
-
 }
 
 void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)

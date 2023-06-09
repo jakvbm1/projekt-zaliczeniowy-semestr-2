@@ -24,6 +24,10 @@ private:
 	Sprite background;
 	Player player;
 	Music music;
+	Sprite hearts_sprite;
+	Texture hearts_texture3;
+	Texture hearts_texture2;
+	Texture hearts_texture1;
 
 	vector<Food_fish*> foodies;
 	Food_fish food;

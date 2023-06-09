@@ -36,6 +36,13 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 		this->foodies.push_back(new Food_fish());
 	}
 
+	this->hearts_texture3.loadFromFile("assets\\graphics\\three_hearts.png");
+	this->hearts_texture2.loadFromFile("assets\\graphics\\two_hearts.png");
+	this->hearts_texture1.loadFromFile("assets\\graphics\\one_heart.png");
+	this->hearts_sprite.setScale({ 3.0, 3.0 });
+	this->hearts_sprite.setPosition({ 20.0, 20.0 });
+	this->hearts_sprite.setTexture(hearts_texture3, true);
+
 	this->hearts = 3;
 }
 
@@ -71,7 +78,6 @@ void Game_scene::add_enemy()
 	{
 		enemies.push_back(new Enemy());
 	}
-
 }
 
 bool Game_scene::check_collision_enemy(int i)
@@ -112,10 +118,13 @@ void Game_scene::handling_events(const sf::Event& event)
 void Game_scene::render()
 {
 	this->window->draw(background);
+	this->window->draw(hearts_sprite);
+
 	for (int i = 0; i < foodies.size(); i++)
 	{
 		this->window->draw(*foodies[i]);
 	}
+
 	this->window->draw(player);
 
 	for (int i = 0; i < enemies.size(); i++)
@@ -180,10 +189,12 @@ void Game_scene::update(const sf::Time& deltaTime)
 			this->enemies[i]->relocating();
 			this->hearts -= 1;
 
-			if (this->hearts < 1)
-			{
-				manager->set_scene(std::make_unique<Game_over_scene>(manager, window));
-			}
+			if (hearts == 2)
+				this->hearts_sprite.setTexture(hearts_texture2, true);
+			else if (hearts == 1)
+				this->hearts_sprite.setTexture(hearts_texture1, true);
+			else if (hearts < 1)
+				manager->set_scene(std::make_unique<Game_over_scene>(manager, window)); //cos nie dziala tutaj
 		}
 	}
 
@@ -195,5 +206,6 @@ void Game_scene::update(const sf::Time& deltaTime)
 			this->points += 20;
 		}
 	}
-	//update_point_text();
+
+	update_point_text();
 }

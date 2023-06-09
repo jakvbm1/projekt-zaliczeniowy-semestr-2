@@ -78,22 +78,6 @@ FloatRect Player::pass_position()
 	return hitbox;
 }
 
-Vector2f Player::pass_hitbox_position()
-{
-	Vector2f hitbox_position;
-	hitbox_position.x = fish.getGlobalBounds().left + 90;
-	hitbox_position.y = fish.getGlobalBounds().top + 30;
-	return hitbox_position;
-}
-
-Vector2f Player::pass_hitbox_size()
-{
-	Vector2f hitbox_size;
-	hitbox_size.x = fish.getGlobalBounds().width - 100;
-	hitbox_size.y = fish.getGlobalBounds().height - 55;
-	return hitbox_size;
-}
-
 void Player::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(fish, states);

@@ -12,6 +12,8 @@ void Game_over_scene::handling_events(const sf::Event& event)
 
 void Game_over_scene::render()
 {
+	this->window->draw(play_again_button);
+	this->window->draw(menu_button);
 }
 
 void Game_over_scene::update(const sf::Time& deltaTime)

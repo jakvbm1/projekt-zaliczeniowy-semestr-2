@@ -4,6 +4,7 @@
 #include "scene.h"
 #include "SceneManager.h"
 #include "menu.h"
+#include "game_scene.h"
 #include "button.h"
 #include <iostream>
 
