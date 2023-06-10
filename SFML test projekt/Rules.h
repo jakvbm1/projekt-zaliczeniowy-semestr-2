@@ -12,8 +12,21 @@ private:
 	Font font;
 	Button back_button;
 	Text rules_text_1;
+	Text rules_text_2;
+	Text rules_text_3;
 	Texture background_t;
 	Sprite background;
+	Sprite keyboard;
+	Texture k_arrows;
+	Texture shark_texture1;
+	Texture shark_texture2;
+	Sprite shark;
+	Texture food_texture1;
+	Texture food_texture2;
+	Sprite food;
+
+	int elapsed_time_animation;
+	bool animation_change;
 
 public:
 	Rules(SceneManager* manager, RenderWindow* window);
