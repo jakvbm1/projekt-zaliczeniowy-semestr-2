@@ -37,6 +37,7 @@ private:
 	int elapsed_time_animation;
 	float elapsed_time;
 	float elapsed_time_adding_enemy;
+	float collision_cooldown;
 
 	float points;
 	Text points_displayed;

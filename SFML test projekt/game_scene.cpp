@@ -148,6 +148,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->elapsed_time += deltaTime.asSeconds();
 	this->elapsed_time_adding_enemy += deltaTime.asSeconds();
 	this->points += deltaTime.asSeconds() * 2;
+	this->collision_cooldown += deltaTime.asSeconds();
 	
 	if (elapsed_time_movement > 20)
 	{
@@ -188,7 +189,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		if (check_collision_enemy(i))
+		if (check_collision_enemy(i) && collision_cooldown > 3)
 		{
 			this->enemies[i]->relocating();
 			this->hearts -= 1;
@@ -196,7 +197,9 @@ void Game_scene::update(const sf::Time& deltaTime)
 			if (hearts == 2)
 				this->hearts_sprite.setTexture(hearts_texture2, true);
 			else if (hearts == 1)
-				this->hearts_sprite.setTexture(hearts_texture1, true);		
+				this->hearts_sprite.setTexture(hearts_texture1, true);
+
+			this->collision_cooldown = 0;
 		}
 	}
 
@@ -211,6 +214,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 	}
 
 	update_point_text();
+
 	if (hearts < 1)
 	{
 		enemies.clear();
