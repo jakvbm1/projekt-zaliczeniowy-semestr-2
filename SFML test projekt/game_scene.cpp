@@ -108,6 +108,7 @@ bool Game_scene::check_collision_food(int i)
 
 void Game_scene::handling_events(const sf::Event& event)
 {
+
 	if (event.type == Event::KeyPressed)
 		player.player_movement(event.key.code, true);
 	
@@ -133,6 +134,11 @@ void Game_scene::render()
 	}
 
 	this->window->draw(points_displayed);
+
+	if (hearts < 1)
+	{
+		manager->set_scene(std::make_unique<Game_over_scene>((int)points, manager, window));
+	}
 }
 
 void Game_scene::update(const sf::Time& deltaTime)
@@ -193,8 +199,8 @@ void Game_scene::update(const sf::Time& deltaTime)
 				this->hearts_sprite.setTexture(hearts_texture2, true);
 			else if (hearts == 1)
 				this->hearts_sprite.setTexture(hearts_texture1, true);
-			else if (hearts < 1)
-				manager->set_scene(std::make_unique<Game_over_scene>(manager, window)); //cos nie dziala tutaj
+
+			
 		}
 	}
 

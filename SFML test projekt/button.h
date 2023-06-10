@@ -11,6 +11,7 @@ using namespace std;
 extern sf::Color vanilla;
 extern sf::Color intense_vanilla;
 extern sf::Color brown;
+extern sf::Font main_font;
 
 class Button : public Drawable
 {

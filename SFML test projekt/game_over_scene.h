@@ -13,9 +13,17 @@ class Game_over_scene :public Scene
 private:
 	Button play_again_button;
 	Button menu_button;
+	int points;
+
+	Font font;
+	Text upper_text;
+	Text lower_text;
+
+	Texture background_t;
+	Sprite background;
 
 public:
-	Game_over_scene(SceneManager* manager, RenderWindow* window);
+	Game_over_scene(int points,SceneManager* manager, RenderWindow* window);
 	virtual void handling_events(const sf::Event& event) override;
 	virtual void render() override;
 	virtual void update(const sf::Time& deltaTime) override;
