@@ -108,16 +108,22 @@ bool Game_scene::check_collision_food(int i)
 
 void Game_scene::handling_events(const sf::Event& event)
 {
+	if (hearts < 1) //jakby ci nie przeskoczylo ze sceny to dlatego ze jak jest poll events to sie musi stac cos typu stzalka nacisnieta albo myszka poruszona idk to tu nie moze byc jednak xD
+	{
+		manager->set_scene(std::make_unique<Game_over_scene>((int)points, manager, window));
+	}
 
 	if (event.type == Event::KeyPressed)
 		player.player_movement(event.key.code, true);
 	
 	if (event.type == Event::KeyReleased)
 		player.player_movement(event.key.code, false);
+
 }
 
 void Game_scene::render()
 {
+
 	this->window->draw(background);
 	this->window->draw(hearts_sprite);
 
@@ -135,10 +141,6 @@ void Game_scene::render()
 
 	this->window->draw(points_displayed);
 
-	if (hearts < 1)
-	{
-		manager->set_scene(std::make_unique<Game_over_scene>((int)points, manager, window));
-	}
 }
 
 void Game_scene::update(const sf::Time& deltaTime)
@@ -198,11 +200,10 @@ void Game_scene::update(const sf::Time& deltaTime)
 			if (hearts == 2)
 				this->hearts_sprite.setTexture(hearts_texture2, true);
 			else if (hearts == 1)
-				this->hearts_sprite.setTexture(hearts_texture1, true);
-
-			
+				this->hearts_sprite.setTexture(hearts_texture1, true);		
 		}
 	}
+
 
 	for (int i = 0; i < foodies.size(); i++)
 	{
