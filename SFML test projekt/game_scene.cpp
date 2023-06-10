@@ -108,10 +108,6 @@ bool Game_scene::check_collision_food(int i)
 
 void Game_scene::handling_events(const sf::Event& event)
 {
-	if (hearts < 1) //jakby ci nie przeskoczylo ze sceny to dlatego ze jak jest poll events to sie musi stac cos typu stzalka nacisnieta albo myszka poruszona idk to tu nie moze byc jednak xD
-	{
-		manager->set_scene(std::make_unique<Game_over_scene>((int)points, manager, window));
-	}
 
 	if (event.type == Event::KeyPressed)
 		player.player_movement(event.key.code, true);
@@ -215,4 +211,12 @@ void Game_scene::update(const sf::Time& deltaTime)
 	}
 
 	update_point_text();
+	if (hearts < 1)
+	{
+		enemies.clear();
+		foodies.clear();
+		music.stop();
+
+		manager->set_scene(std::make_unique<Game_over_scene>((int)points, manager, window));
+	}
 }
