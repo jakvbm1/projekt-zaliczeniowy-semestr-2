@@ -6,21 +6,24 @@ Rules::Rules(SceneManager* manager, RenderWindow* window): Scene(manager, window
 	this->rules_text_1.setFont(font);
 	this->rules_text_1.setCharacterSize(60);
 	this->rules_text_1.setString("Player movement (UP/DOWN)");
-	this->rules_text_1.setOutlineColor(Color::Black);
+	this->rules_text_1.setOutlineColor(brown);
+	this->rules_text_1.setFillColor(vanilla);
 	this->rules_text_1.setOutlineThickness(3);
 	this->rules_text_1.setPosition(350, 80);
 
 	this->rules_text_2.setFont(font);
 	this->rules_text_2.setCharacterSize(60);
 	this->rules_text_2.setString("Watch out for sharks!");
-	this->rules_text_2.setOutlineColor(Color::Black);
+	this->rules_text_2.setOutlineColor(brown);
+	this->rules_text_2.setFillColor(vanilla);
 	this->rules_text_2.setOutlineThickness(3);
 	this->rules_text_2.setPosition(350, 250);
 
 	this->rules_text_3.setFont(font);
 	this->rules_text_3.setCharacterSize(60);
 	this->rules_text_3.setString("Eat small fishes to get points");
-	this->rules_text_3.setOutlineColor(Color::Black);
+	this->rules_text_3.setOutlineColor(brown);
+	this->rules_text_3.setFillColor(vanilla);
 	this->rules_text_3.setOutlineThickness(3);
 	this->rules_text_3.setPosition(350, 400);
 

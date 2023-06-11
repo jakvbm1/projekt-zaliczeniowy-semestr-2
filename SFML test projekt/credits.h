@@ -13,7 +13,14 @@ class Credits: public Scene
 {
 private:
 
-	Text credits_text_1;
+	Text programmers_headline;
+	Text programmers;
+	Text idea_headline;
+	Text idea;
+	Text design_headline;
+	Text design;
+	Text audio_headline;
+	Text audio;
 	Button back_button;
 	Font font;
 	Texture background_t;
