@@ -32,8 +32,6 @@ private:
 
 	Text authors;
 
-	void initialize_vars();
-	void initialize_background();
 
 public:
 

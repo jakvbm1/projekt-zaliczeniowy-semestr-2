@@ -1,6 +1,6 @@
 #include "menu.h"
 
-void Menu::initialize_vars()
+Menu::Menu(SceneManager* manager, RenderWindow* window):Scene(manager, window)
 {
 	this->start_button.set_parameters(400, 100, "start game", 512, 184);
 	this->exit_button.set_parameters(400, 100, "exit game", 512, 484);
@@ -17,34 +17,20 @@ void Menu::initialize_vars()
 
 	this->main_font.loadFromFile("assets\\fonts\\dpcomic.ttf");
 
-
-
 	this->authors.setFont(main_font);
 	this->authors.setCharacterSize(48);
 	this->authors.setString("Damian Knopek, Jakub Miarka");
 	this->authors.setOutlineColor(brown);
 	this->authors.setFillColor(vanilla);
 	this->authors.setOutlineThickness(2);
-	const  FloatRect bounds_company(this->authors.getLocalBounds());
-	this->authors.setOrigin(bounds_company.width / 2, bounds_company.height / 2);
+	const  FloatRect bounds_authors(this->authors.getLocalBounds());
+	this->authors.setOrigin(bounds_authors.width / 2, bounds_authors.height / 2);
 	this->authors.setPosition(512, 668);
 
-}
-
-
-void Menu::initialize_background()
-{
-	
 	this->background_t.loadFromFile("assets\\graphics\\background_texture.png");
 	this->background.setTexture(background_t, true);
 	this->background.setScale({ 4, 4 });
-}
 
-
-Menu::Menu(SceneManager* manager, RenderWindow* window):Scene(manager, window)
-{
-	initialize_vars();
-	initialize_background();
 }
 
 Menu::~Menu()
