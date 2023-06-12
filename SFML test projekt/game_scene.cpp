@@ -12,6 +12,9 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->elapsed_time_adding_enemy = 0;
 	this->points = 0;
 
+	this->crash_buff.loadFromFile("assets\\audio\\crash_sound.wav");
+	this->crash.setBuffer(crash_buff);
+
 	this->music.openFromFile("assets\\audio\\game_music.wav");
 	this->music.setLoop(true);
 	this->music.setVolume(50);
@@ -39,7 +42,7 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->hearts_texture3.loadFromFile("assets\\graphics\\three_hearts.png");
 	this->hearts_texture2.loadFromFile("assets\\graphics\\two_hearts.png");
 	this->hearts_texture1.loadFromFile("assets\\graphics\\one_heart.png");
-	this->hearts_sprite.setScale({ 3.0, 3.0 });
+	this->hearts_sprite.setScale({ 4.0, 4.0 });
 	this->hearts_sprite.setPosition({ 20.0, 20.0 });
 	this->hearts_sprite.setTexture(hearts_texture3, true);
 
@@ -191,6 +194,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 		if (check_collision_enemy(i) && collision_cooldown > 3)
 		{
 			this->hearts -= 1;
+			crash.play();
 
 			if (hearts == 2)
 				this->hearts_sprite.setTexture(hearts_texture2, true);

@@ -12,8 +12,6 @@ private:
 	Sprite enemy_sprite;
 	Texture texture_1;
 	Texture texture_2;
-	//SoundBuffer sound_buff;
-	//Sound eating_sound;
 	Vector2f position;
 	bool animation_change;
 

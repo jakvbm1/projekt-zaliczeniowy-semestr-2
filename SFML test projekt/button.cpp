@@ -13,7 +13,7 @@ Button::Button()
 
 void Button::pressed()
 {
-	click_sound.setPlayingOffset(seconds(0.2));
+	click_sound.setVolume(200);
 	click_sound.play();
 }
 
@@ -31,7 +31,7 @@ void Button::set_parameters(int x, int y, string mes, int pos_x, int pos_y)
 	shape.setOutlineThickness(3);
 	shape.setFillColor(vanilla);
 
-	buff.loadFromFile("assets\\audio\\universfield.wav");
+	buff.loadFromFile("assets\\audio\\button_sound.wav");
 	click_sound.setBuffer(buff);
 	font.loadFromFile("assets\\fonts\\dpcomic.ttf");
 	text.setFont(font);

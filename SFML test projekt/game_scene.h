@@ -30,6 +30,9 @@ private:
 	Texture hearts_texture2;
 	Texture hearts_texture1;
 
+	SoundBuffer crash_buff;
+	Sound crash;
+
 	vector<Food_fish*> foodies;
 	Food_fish food;
 	vector<Enemy*> enemies;

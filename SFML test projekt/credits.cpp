@@ -64,10 +64,10 @@ Credits::Credits(SceneManager* manager, RenderWindow* window): Scene(manager, wi
 	this->idea.setString("Concept2");
 
 	this->design_headline.setString("Characters/level design:");
-	this->design.setString("Jakub Miarka");
+	this->design.setString("Jakub Miarka, Damian Knopek");
 
 	this->audio_headline.setString("Music, sound effects:");
-	this->audio.setString("i9bonsai");
+	this->audio.setString("Jakub Miarka");
 
 	//setting origin and position for all Texts
 
