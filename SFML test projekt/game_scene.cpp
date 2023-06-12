@@ -136,7 +136,6 @@ void Game_scene::render()
 	}
 
 	this->window->draw(points_displayed);
-
 }
 
 void Game_scene::update(const sf::Time& deltaTime)
