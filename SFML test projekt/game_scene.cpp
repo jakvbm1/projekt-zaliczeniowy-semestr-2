@@ -26,12 +26,12 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	update_point_text();
 
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		this->enemies.push_back(new Enemy());
 	}
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		this->foodies.push_back(new Food_fish());
 	}
@@ -53,7 +53,7 @@ void Game_scene::update_point_text()
 	
 	const  FloatRect bounds_title(points_displayed.getLocalBounds());
 	this->points_displayed.setOrigin(bounds_title.width / 2, bounds_title.height / 2);
-	this->points_displayed.setPosition(512, 60);
+	this->points_displayed.setPosition(512, 30);
 
 }
 
@@ -74,7 +74,7 @@ void Game_scene::move_background()
 
 void Game_scene::add_enemy()
 {
-	if (enemies.size() < 6)
+	if (enemies.size() < 7)
 	{
 		enemies.push_back(new Enemy());
 	}
@@ -147,7 +147,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
 	this->elapsed_time_adding_enemy += deltaTime.asSeconds();
-	this->points += deltaTime.asSeconds() * 2;
+	this->points += deltaTime.asSeconds() * 0.5;
 	this->collision_cooldown += deltaTime.asSeconds();
 	
 	if (elapsed_time_movement > 20)
@@ -191,7 +191,6 @@ void Game_scene::update(const sf::Time& deltaTime)
 	{
 		if (check_collision_enemy(i) && collision_cooldown > 3)
 		{
-			this->enemies[i]->relocating();
 			this->hearts -= 1;
 
 			if (hearts == 2)

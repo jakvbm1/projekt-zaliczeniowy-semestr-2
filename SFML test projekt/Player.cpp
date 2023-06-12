@@ -47,9 +47,9 @@ void Player::player_movement(Keyboard::Key key, bool checkPressed)
 void Player::update()
 {
 	if (up && position.y > -20.0f)
-		position.y -= 5.0f;
+		position.y -= 3.5f;
 	if(down && position.y < 680.0f)
-		position.y += 5.0f;
+		position.y += 3.5f;
 	fish.setPosition(position);
 }
 

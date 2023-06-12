@@ -13,13 +13,19 @@ Enemy::Enemy()
 
 void Enemy::relocating()
 {
+	//we decided that it will be better to have few prefixed values for height because when height was
+	//made the same way width is, sharks tended to dont appear near upper boundary of the screen
+	int heights[6] = { 25, 125, 225, 325, 425, 525 };
+
 	std::random_device dev;
 	std::mt19937 rng(dev());
+
+	//horizontal position is altered randomly so the sharks differs in position so it looks more natural
 	std::uniform_int_distribution<std::mt19937::result_type> dist_horizontal(1, 800);
-	std::uniform_int_distribution<std::mt19937::result_type> dist_vertical(1, 500);
+	std::uniform_int_distribution<std::mt19937::result_type> vertical_index(1, 7);
 
 	this->position.x = 800 + (float)dist_horizontal(rng);
-	this->position.y = 150 + (float)dist_vertical(rng);
+	this->position.y = heights[vertical_index(rng) - 1];
 	this->enemy_sprite.setPosition(position);
 }
 
@@ -30,7 +36,7 @@ void Enemy::moving(float acceletarion)
 		relocating();
 	}
 
-	float how_fast = acceletarion / 10;
+	float how_fast = acceletarion / 20;
 	if (how_fast > 10)
 	{
 		how_fast = 10;
