@@ -15,14 +15,14 @@ void Enemy::relocating()
 {
 	//we decided that it will be better to have few prefixed values for height because when height was
 	//made the same way width is, sharks tended to dont appear near upper boundary of the screen
-	int heights[6] = { 25, 125, 225, 325, 425, 525 };
+	int heights[12] = { 25,75, 125,175, 225,275, 325,375, 425,475, 525,575 };
 
 	std::random_device dev;
 	std::mt19937 rng(dev());
 
 	//horizontal position is altered randomly so the sharks differs in position so it looks more natural
 	std::uniform_int_distribution<std::mt19937::result_type> dist_horizontal(1, 800);
-	std::uniform_int_distribution<std::mt19937::result_type> vertical_index(1, 7);
+	std::uniform_int_distribution<std::mt19937::result_type> vertical_index(1, 13);
 
 	this->position.x = 800 + (float)dist_horizontal(rng);
 	this->position.y = heights[vertical_index(rng) - 1];
@@ -36,16 +36,18 @@ void Enemy::moving(float acceletarion)
 		relocating();
 	}
 
+	//the acceleration is meant to be time which has passed, so sharks will be getting faster overtime
 	float how_fast = acceletarion / 20;
 	if (how_fast > 10)
 	{
 		how_fast = 10;
 	}
 
-	this->position -= {3 + how_fast, 0};
+	this->position -= {4 + how_fast, 0};
 	this->enemy_sprite.setPosition(position);
 }
-
+//the idea for changing texture is really simple, whenever texture is changed, bool variable's value is also changed, so when the method is 
+//called another time the texture is changed to the correct one, the same mechanism is used in Player and Food classes
 void Enemy::change_texture()
 {
 	if (this->animation_change)
