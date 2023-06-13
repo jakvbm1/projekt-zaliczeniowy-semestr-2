@@ -24,6 +24,7 @@
     <ProjectGuid>{4da19808-56fc-4082-9b6e-d0721ad878d9}</ProjectGuid>
     <RootNamespace>SFMLtestprojekt</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Rybki</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -144,7 +145,7 @@
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SFML test projekt.cpp" />
+    <ClCompile Include="Rybki.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button.h" />
