@@ -64,10 +64,14 @@ void Game_scene::move_background()
 {
 	Vector2f position = background.getPosition();
 
+	//the backgroud is divided into four segments, the first and the last one are identical so moving from the last to the first one is unnoticed
+	//and create illusion off never-ending background
 	if (position.x == -3072)
 	{
 		background.setPosition({ 0, 0 });
 	}
+
+
 	else
 	{
 		position += {-2, 0};
@@ -145,6 +149,8 @@ void Game_scene::update(const sf::Time& deltaTime)
 {
 	player.update();
 
+
+	//adding amount of time which has passed from the last call of update() to all time-related variables
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();

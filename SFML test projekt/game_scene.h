@@ -37,6 +37,9 @@ private:
 	Food_fish food;
 	vector<Enemy*> enemies;
 
+
+	//it is easier to create separate timers for every time dependant action and reset them every time action progs
+	//otherwise it could maybe be done using if statements with % operation but it could potentially lead to program not working correctly
 	int elapsed_time_movement;
 	int elapsed_time_animation;
 	float elapsed_time;
