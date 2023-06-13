@@ -11,6 +11,7 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->elapsed_time = 0;
 	this->elapsed_time_adding_enemy = 0;
 	this->points = 0;
+	this->collision_cooldown = 250;
 
 	this->crash_buff.loadFromFile("assets\\audio\\crash_sound.wav");
 	this->crash.setBuffer(crash_buff);
@@ -45,7 +46,6 @@ Game_scene::Game_scene(SceneManager* manager, RenderWindow* window) : Scene(mana
 	this->hearts_sprite.setScale({ 4.0, 4.0 });
 	this->hearts_sprite.setPosition({ 20.0, 20.0 });
 	this->hearts_sprite.setTexture(hearts_texture3, true);
-
 	this->hearts = 3;
 }
 
@@ -89,6 +89,8 @@ void Game_scene::add_enemy()
 
 bool Game_scene::check_collision_enemy(int i)
 {
+	//function pass_position() passes the hitbox (rectangle) parameters
+	//and function intersects checks if two hitboxes are colliding
 	if (player.pass_position().intersects(enemies[i]->pass_position()))
 	{
 		return true;
@@ -115,10 +117,10 @@ bool Game_scene::check_collision_food(int i)
 
 void Game_scene::handling_events(const sf::Event& event)
 {
-
+	//passes which key was pressed
 	if (event.type == Event::KeyPressed)
 		player.player_movement(event.key.code, true);
-	
+	//passes which key was released
 	if (event.type == Event::KeyReleased)
 		player.player_movement(event.key.code, false);
 
@@ -135,7 +137,9 @@ void Game_scene::render()
 		this->window->draw(*foodies[i]);
 	}
 
-	this->window->draw(player);
+	//doesn't draw a palyer for 0.35s after a collision
+	if (collision_cooldown > 250)
+		this->window->draw(player);
 
 	for (int i = 0; i < enemies.size(); i++)
 	{
@@ -149,14 +153,13 @@ void Game_scene::update(const sf::Time& deltaTime)
 {
 	player.update();
 
-
 	//adding amount of time which has passed from the last call of update() to all time-related variables
 	this->elapsed_time_movement += deltaTime.asMilliseconds();
 	this->elapsed_time_animation += deltaTime.asMilliseconds();
 	this->elapsed_time += deltaTime.asSeconds();
 	this->elapsed_time_adding_enemy += deltaTime.asSeconds();
 	this->points += deltaTime.asSeconds() * 0.5;
-	this->collision_cooldown += deltaTime.asSeconds();
+	this->collision_cooldown += deltaTime.asMilliseconds();
 	
 	if (elapsed_time_movement > 20)
 	{
@@ -197,7 +200,7 @@ void Game_scene::update(const sf::Time& deltaTime)
 
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		if (check_collision_enemy(i) && collision_cooldown > 3)
+		if (check_collision_enemy(i) && collision_cooldown > 3000)
 		{
 			this->hearts -= 1;
 			crash.play();
@@ -210,7 +213,6 @@ void Game_scene::update(const sf::Time& deltaTime)
 			this->collision_cooldown = 0;
 		}
 	}
-
 
 	for (int i = 0; i < foodies.size(); i++)
 	{

@@ -94,6 +94,7 @@ void Rules::render()
 	window->draw(food);
 }
 
+//enemies and food animation in rules scene
 void Rules::update(const sf::Time& deltaTime)
 {
 	this->elapsed_time_animation += deltaTime.asMilliseconds();

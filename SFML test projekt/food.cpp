@@ -59,6 +59,7 @@ void Food_fish::relocating()
 	this->food_sprite.setPosition(position);
 }
 
+//passes the food's hitbox
 FloatRect Food_fish::pass_position()
 {
 	return this->food_sprite.getGlobalBounds();

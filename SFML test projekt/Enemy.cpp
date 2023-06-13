@@ -63,6 +63,7 @@ void Enemy::change_texture()
 	}
 }
 
+//passes the modified enemy's rectangle parameters as its hitbox
 FloatRect Enemy::pass_position()
 {
 	FloatRect hitbox;

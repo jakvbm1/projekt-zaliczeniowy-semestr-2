@@ -64,7 +64,7 @@ Credits::Credits(SceneManager* manager, RenderWindow* window): Scene(manager, wi
 	this->idea.setString("Concept2");
 
 	this->design_headline.setString("Characters/level design:");
-	this->design.setString("Jakub Miarka, Damian Knopek");
+	this->design.setString("Jakub Miarka, Damian Knopek, codeman38 (used font's author)");
 
 	this->audio_headline.setString("Music, sound effects:");
 	this->audio.setString("Jakub Miarka");

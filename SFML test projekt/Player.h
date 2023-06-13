@@ -26,9 +26,6 @@ public:
 	void change_texture();
 	FloatRect pass_position();
 
-	Vector2f pass_hitbox_position();
-	Vector2f pass_hitbox_size();
-
 	// Odziedziczono za poœrednictwem elementu Drawable
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
 };

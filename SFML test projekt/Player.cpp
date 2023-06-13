@@ -14,7 +14,8 @@ Player::Player()
 	this->animation_change = true;
 }
 
-
+//this function changes the bool values for up/down player movement
+//by information given from game_scene.cpp about pressed/released keyboard keys
 void Player::player_movement(Keyboard::Key key, bool checkPressed)
 {
 	if (checkPressed == true)
@@ -44,6 +45,7 @@ void Player::player_movement(Keyboard::Key key, bool checkPressed)
 	}
 }
 
+//checks if player is in scene boundaries and changes its position by the given bool variables
 void Player::update()
 {
 	if (up && position.y > 60.0f)
@@ -53,6 +55,7 @@ void Player::update()
 	fish.setPosition(position);
 }
 
+//changes between two player's textures
 void Player::change_texture()
 {
 	if (animation_change)
@@ -68,6 +71,7 @@ void Player::change_texture()
 	}
 }
 
+//passes the modified sprite's rectangle parameters as its hitbox
 FloatRect Player::pass_position()
 {
 	FloatRect hitbox;
