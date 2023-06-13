@@ -21,6 +21,7 @@ void SceneManager::update(const sf::Time& deltaTime)
 
 void SceneManager::set_scene(unique_ptr<Scene> newScene)
 {
+	//old scene object is automatically deleted so it isn't stored in memory unnecesarilly 
 	current_scene = move(newScene);
 }
 
