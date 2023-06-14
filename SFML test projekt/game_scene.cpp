@@ -137,7 +137,7 @@ void Game_scene::render()
 		this->window->draw(*foodies[i]);
 	}
 
-	//doesn't draw a palyer for 0.35s after a collision
+	//doesn't draw a player for 0.25s after a collision
 	if (collision_cooldown > 250)
 		this->window->draw(player);
 
